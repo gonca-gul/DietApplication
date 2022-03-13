@@ -11,7 +11,7 @@
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
  import type {Node} from 'react';
  import {Button, View, Text } from 'react-native';
- import Welcome from './src/pages/Welcome';
+ import DietTracker from './src/pages/DietTracker';
  import SignUp from './src/pages/SignUp';
  import Login from './src/pages/Login';
  import UserLogin from './src/pages/UserLogin';
@@ -22,7 +22,7 @@
    return (
      <NavigationContainer>
        <Stack.Navigator>
-         <Stack.Screen name="Welcome" component={Welcome} />
+         <Stack.Screen name="DietTracker" component={DietTracker} />
          <Stack.Screen name="Login" component={Login} />
          <Stack.Screen name= "UserLogin" component={UserLogin} />
          <Stack.Screen name="SignUp" component={SignUp} />
