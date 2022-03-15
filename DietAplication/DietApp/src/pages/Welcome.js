@@ -3,16 +3,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert } from 'react-native';
+import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert,StatusBar } from 'react-native';
  
  function Welcome({ navigation }) {
   return (
     <View style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor="green" />
         <LinearGradient
           start={{x: 0.0, y: 0.25}} 
           end={{x: 0.5, y: 1.0}}
           locations={[0,0.5,0.4]}
-          colors={['ivory', 'mistyrose', 'indianred' /* lightsalmon */ ]}
+          colors={['ivory', 'mistyrose', 'limegreen' /* lightsalmon */ ]}
           style={styles.linearGradient}>        
             <Image style={styles.image} source={require('../../src/image/image.png')} />
             <Text style={styles.space}> </Text>
@@ -80,7 +81,7 @@ button2: {
     alignItems: 'center',
 },
 buttonText1: {
-    color: 'indianred',
+    color: 'purple',
     fontSize: 20,
     fontWeight: 'bold',
 },

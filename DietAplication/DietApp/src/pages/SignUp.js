@@ -44,7 +44,7 @@ import CheckBox from '@react-native-community/checkbox';
                     onValueChange={(newValue) => setToggleCheckBox2(newValue)}/>
                     <Text style={styles.checkTxt}>Are You a Client</Text>
                     <TouchableOpacity style={styles.button1} >
-                    <LinearGradient colors={['aquamarine', 'green']} style={styles.gradient}>
+                    <LinearGradient colors={['limegreen', 'green']} style={styles.gradient}>
                     <Text  style={styles.buttonText1}>Get Started</Text>
                     </LinearGradient>
                     </TouchableOpacity> 
@@ -65,7 +65,7 @@ linearGradient: {
     width: 400,
 },
 topTxt: {
-    color: 'indianred',
+    color: 'purple',
     fontSize: 30,
     fontWeight: 'bold',
     bottom: 50,
@@ -98,7 +98,7 @@ checkTxt:{
     right:45,
     top:35,
     fontSize: 20,
-    color: 'indianred',
+    color: 'purple',
     fontWeight: 'bold',
 },
 gradient: {

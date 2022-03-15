@@ -10,7 +10,7 @@ function Login() {
   const [password, setPassword] = React.useState('');
     return (
       <View View style={styles.cantainer}>
-        <Image style={styles.image} source={require('../../src/image/user.jpg')} />
+        <AntIcon style={styles.user} name="login" color="ivory" size={150} />
         <View style={styles.topView}>
           <Text style={styles.topTxt}>Hello Client</Text>
           <Text style={styles.topTxt1}>Login First to Continue</Text>
@@ -23,7 +23,7 @@ function Login() {
           onChangeText={text => setPassword(text)}/>
           <AntIcon style={styles.icon2} name="key" color="green" size={20} />
           <TouchableOpacity style={styles.btn}  onPress={Login}>
-          <LinearGradient colors={['mistyrose', 'lightcoral', 'indianred']} style={styles.gradient}>
+          <LinearGradient colors={['mistyrose', 'plum', 'darkmagenta']} style={styles.gradient}>
           <Text style={styles.btnTxt}>Login</Text>
           </LinearGradient>
           </TouchableOpacity>
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
 cantainer: {
   flex:1,
   flex: 0.35,
-  backgroundColor: 'indianred',
+  backgroundColor: 'limegreen',
   height: 700,
 },
-image: {
+user: {
   marginTop:10,
   width:150,
   height: 150,
@@ -62,34 +62,28 @@ icon2: {
   bottom:195,
 },
 topView: {
-  marginTop: 15,
+  marginTop: 10,
   backgroundColor: 'white',
   height: 460,
   marginLeft:11,
   width:370,
-  borderRadius: 30,
-shadowOffset: {
-	width: 0,
-	height: 3,
-},
-shadowOpacity: 0.27,
-shadowRadius: 4.65,
-shadowColor: 'green',
-elevation: 25,
+  borderRadius: 20,
+  shadowColor: 'purple',
+  elevation: 25,
 },
  
 topTxt: {
-  color: 'indianred',
+  color: 'purple',
   marginTop: 20,
   fontSize: 30,
   fontWeight: 'bold',
-  marginLeft: 40,
+  marginLeft: 105,
 },
 topTxt1: {
   marginTop: 5,
   fontSize: 15,
   fontWeight: 'bold',
-  marginLeft: 40,
+  marginLeft: 107,
 
 },
 nameInput: {
@@ -108,38 +102,31 @@ btn: {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  shadowOffset: {
-  width: 0,
-  height: 4,
-  },
-    shadowRadius: 5,
-    shadowOpacity: 0.8,
-  },
+},
 gradient:{
-    width: 300,
-    height: 55,
-    borderRadius: 20,
-  },
-  btnTxt: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginLeft: 120,
-    marginTop:13,
-  },
-  endView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
-  btn2: {
-    marginRight: 80,
-  },
-  endTxt: {
-    fontSize: 15,
-    marginTop: 25,
-    fontWeight: 'bold',
-    marginLeft: 140,
+  width: 300,
+  height: 55,
+  borderRadius: 20,
+},
+btnTxt: {
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: 20,
+  marginLeft: 120,
+  marginTop:13,
+},
+endView: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+btn2: {
+  marginRight: 80,
+},
+endTxt: {
+  fontSize: 15,
+  marginTop: 25,
+  fontWeight: 'bold',
+  marginLeft: 140,
   },
 });
 export default Login; 

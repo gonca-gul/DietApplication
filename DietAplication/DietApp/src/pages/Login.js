@@ -6,12 +6,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 
-function Login() {
+
+function Login({navigation}) {
   const [password, setPassword] = React.useState('');
     return (
-      
       <View View style={styles.cantainer}>
-        <Image style={styles.image} source={require('../../src/image/dietitian.jpg')} />
+        <AntIcon style={styles.user} name="login" color="ivory" size={150} />
         <View style={styles.topView}>
           <Text style={styles.topTxt}>Hello Dietitian</Text>
           <Text style={styles.topTxt1}>Login First to Continue</Text>
@@ -23,8 +23,8 @@ function Login() {
           enablesReturnKeyAutomatically
           onChangeText={text => setPassword(text)}/>
           <AntIcon style={styles.icon2} name="key" color="green" size={20} />
-          <TouchableOpacity style={styles.btn}  onPress={Login}>
-          <LinearGradient colors={['mistyrose', 'lightcoral', 'indianred']} style={styles.gradient}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('D_HomePage')}>
+          <LinearGradient colors={['mistyrose', 'plum', 'darkmagenta']} style={styles.gradient}>
             <Text style={styles.btnTxt}>Login</Text>
           </LinearGradient>
           </TouchableOpacity>
@@ -40,19 +40,18 @@ function Login() {
  );
 }
 const styles = StyleSheet.create({
-  cantainer: {
-    flex:1,
-    flex: 0.35,
-    backgroundColor: 'indianred',
-    height: 700,
-  },
-  image: {
-    marginTop:10,
-    width:150,
-    height: 150,
-    marginLeft:120,
+cantainer: {
+  flex:1,
+  flex: 0.35,
+  backgroundColor: 'limegreen',
+  height: 700,
 },
-
+user: {
+  marginTop:10,
+  width:150,
+  height: 150,
+  marginLeft:120,
+},
 icon1: {
   position: 'absolute',
   left:320,
@@ -64,35 +63,27 @@ icon2: {
   bottom:195,
 },
 topView: {
-  marginTop: 15,
+  marginTop: 10,
   backgroundColor: 'white',
   height: 460,
   marginLeft:11,
   width:370,
-  borderRadius: 30,
-shadowOffset: {
-	width: 0,
-	height: 3,
-},
-  shadowOpacity: 0.27,
-  shadowRadius: 4.65,
-  shadowColor: 'green',
+  borderRadius: 20,
+  shadowColor: 'purple',
   elevation: 25,
-},
- 
+}, 
 topTxt: {
-  color: 'indianred',
+  color: 'purple',
   marginTop: 20,
   fontSize: 30,
   fontWeight: 'bold',
-  marginLeft: 40,
+  marginLeft: 90,
 },
 topTxt1: {
   marginTop: 5,
   fontSize: 15,
   fontWeight: 'bold',
-  marginLeft: 40,
-
+  marginLeft: 110,
 },
 nameInput: {
   height: 40,
@@ -111,12 +102,7 @@ btn: {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  shadowOffset: {
-  width: 0,
-  height: 4,
-},
-  shadowRadius: 5,
-  shadowOpacity: 0.8,
+
 },
 gradient:{
   width: 300,
