@@ -23,7 +23,7 @@ function Login() {
           onChangeText={text => setPassword(text)}/>
           <AntIcon style={styles.icon2} name="key" color="green" size={20} />
           <TouchableOpacity style={styles.btn}  onPress={Login}>
-          <LinearGradient colors={['mistyrose', 'plum', 'darkmagenta']} style={styles.gradient}>
+          <LinearGradient colors={['mistyrose','darkmagenta']} style={styles.gradient}>
           <Text style={styles.btnTxt}>Login</Text>
           </LinearGradient>
           </TouchableOpacity>
@@ -105,7 +105,7 @@ btn: {
 },
 gradient:{
   width: 300,
-  height: 55,
+  height: 50,
   borderRadius: 20,
 },
 btnTxt: {
@@ -113,7 +113,7 @@ btnTxt: {
   fontWeight: 'bold',
   fontSize: 20,
   marginLeft: 120,
-  marginTop:13,
+  marginTop:10,
 },
 endView: {
   flexDirection: 'row',

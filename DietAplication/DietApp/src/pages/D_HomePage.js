@@ -6,7 +6,6 @@ import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollV
 import AntIcon from "react-native-vector-icons/AntDesign";
 import SearchBar from 'react-native-search-bar';
 
-
 function D_HomePage({navigation}) {
     return (
       <View View style={styles.cantainer}>
@@ -30,6 +29,10 @@ function D_HomePage({navigation}) {
           <TouchableOpacity style={styles.btn3}  onPress={()=>navigation.navigate('Settings')}>
           <AntIcon  name="setting" color="limegreen"  size={55} />
             <Text style={styles.btnTxt}>Settings</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('Messages')}>
+          <AntIcon  name="message1" color="limegreen"  size={55} />
+            <Text style={styles.btnTxt}>Messages</Text>
           </TouchableOpacity>
           </ScrollView>
       </View>
@@ -58,14 +61,13 @@ btn: {
   padding: 10,
   marginTop: 50,
     /*backgroundColor: 'indianred',*/
-  left:50,
+  left:55,
   justifyContent: 'center',
   alignItems: 'center',
   shadowColor: 'purple',
   elevation: 25,
 },
 btn2: {
-  marginLeft: 150,
   borderColor: 'plum',
   borderWidth: 1,
   bottom:115,
@@ -73,6 +75,7 @@ btn2: {
   width: 115,
   height: 115,
     /*backgroundColor: 'indianred',*/
+  marginLeft: 145,
   left:80,
   justifyContent: 'center',
   alignItems: 'center',
@@ -81,10 +84,26 @@ btn2: {
 },
 btn3: {
   marginTop:20,
-  marginLeft: 140,
+  marginLeft: 55,
   borderColor: 'plum',
   borderWidth: 1,
   bottom:115,
+  backgroundColor: 'white',
+  width: 115,
+  height: 115,
+    /*backgroundColor: 'indianred',*/
+  justifyContent: 'center',
+  alignItems: 'center',
+  shadowColor: 'purple',
+  elevation: 25,
+},
+btn4: {
+  marginTop:20,
+  marginLeft: 145,
+  left:80,
+  borderColor: 'plum',
+  borderWidth: 1,
+  bottom:250,
   backgroundColor: 'white',
   width: 115,
   height: 115,
@@ -101,4 +120,5 @@ btnTxt: {
   fontSize: 17,
 },
 });
+
 export default D_HomePage; 

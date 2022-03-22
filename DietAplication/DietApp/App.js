@@ -20,6 +20,9 @@
  import Notification from './src/pages/Notifications';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
  import AntIcon from "react-native-vector-icons/AntDesign";
+ import FoodCalori from './src/pages/FoodCalori';
+ import Settings from './src/pages/Settings';
+
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
@@ -38,12 +41,18 @@ const TabNavigator = () => {
       },
     })}
     >
-    <Tab.Screen name="HOME"  options={{   
+    <Tab.Screen name="HOME"  options={{ 
     tabBarIcon: () => (<AntIcon name='home' size={24} color='purple'/>) }} component={D_HomePage}/>
     <Tab.Screen name="PROFİLE"  options={{ 
-    tabBarIcon: () => (<AntIcon name='profile' size={24} color='purple'/>) }} component={D_Profile}/>
+    headerRight: () => (
+      <Button 
+        onPress={() => alert('Your Information Has Been Saved!')}
+        title="SAVE"
+        color='limegreen'/>
+    ),
+    tabBarIcon: () => (<AntIcon name='profile' size={24} color='purple' />) }} component={D_Profile}/>
     <Tab.Screen name="NOTIFICATIONS"  options={{  
-    tabBarIcon: () => (<AntIcon name='notification' size={24} color='purple'/>) }}  component={Notification}/>
+    tabBarIcon: () => (<AntIcon name='notification' size={24} color='purple' />) }}  component={Notification}/>
   </Tab.Navigator>
    );
  }
@@ -89,7 +98,24 @@ const TabNavigator = () => {
          }}/>
         <Stack.Screen name="D_HomePage" component={TabNavigator}
          options={{ headerShown: false,
-         
+        }} />
+        <Stack.Screen name="FoodCalori" component={FoodCalori} 
+         options={{ title: 'Find Food Calori',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Settings" component={Settings} 
+         options={{ title: 'Settings',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
         }} />
         </Stack.Navigator>
      </NavigationContainer>
