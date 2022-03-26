@@ -6,7 +6,7 @@ import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image  } from 
 import AntIcon from "react-native-vector-icons/AntDesign";
 import LinearGradient from 'react-native-linear-gradient';
 
-function Login() {
+function UserLogin({navigation}) {
   const [password, setPassword] = React.useState('');
     return (
       <View View style={styles.cantainer}>
@@ -22,7 +22,7 @@ function Login() {
           enablesReturnKeyAutomatically
           onChangeText={text => setPassword(text)}/>
           <AntIcon style={styles.icon2} name="key" color="green" size={20} />
-          <TouchableOpacity style={styles.btn}  onPress={Login}>
+          <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('U_HomePage')}>
           <LinearGradient colors={['mistyrose','darkmagenta']} style={styles.gradient}>
           <Text style={styles.btnTxt}>Login</Text>
           </LinearGradient>
@@ -129,4 +129,4 @@ endTxt: {
   marginLeft: 140,
   },
 });
-export default Login; 
+export default UserLogin; 
