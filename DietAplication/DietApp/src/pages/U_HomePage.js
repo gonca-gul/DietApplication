@@ -9,7 +9,7 @@
  import { SliderBox } from "react-native-image-slider-box";
  import ProgressCircle from 'react-native-progress-circle';
 
- function U_HomePage(){
+ function U_HomePage({navigation}){
   const images = [
     require('../image/slide1.jpg'),
     require('../image/slide2.jpg'),
@@ -18,8 +18,9 @@
     require('../image/slide5.jpg'),
   ];
      return(
-      <ScrollView>
+      
         <View View style={styles.cantainer}>
+          <ScrollView>
         <SearchBar
           placeholder="Find Your Dietitian"
           width={360}
@@ -40,38 +41,39 @@
             height: 10,
             borderRadius: 10,
             marginHorizontal: 5,}} />
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('DietList')}>
           <Image
           source={require('../image/mydiet.jpg')}
-          style={ {height:70, width:70, right:70}}/>
+          style={ {height:70, width:70}}/>
             <Text style={styles.btnTxt}>MY DIET</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('ClientList')}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Exercise')}>
           <Image
           source={require('../image/exercise.jpg')}
-          style={ {height:65, width:75, right:60, borderRadius:70/2}}/> 
+          style={ {height:65, width:75,  borderRadius:70/2, marginTop:10}}/> 
             <Text style={styles.btnTxt}> EXERCISE</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Settings')}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
           <Image
           source={require('../image/foodcalori.jpg')}
-          style={ {height:85, width:75, right:50, borderRadius:70/2}}/>
+          style={ {height:80, width:75,  borderRadius:70/2}}/>
             <Text style={styles.btnTxt}>FOOD CALORI</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Messages')}>
+          <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
           <Image
           source={require('../image/message.png')}
-          style={ {height:65, width:65, right:60, borderRadius:70/2}}/>
+          style={ {height:65, width:65,  borderRadius:70/2, marginTop:10}}/>
             <Text style={styles.btnTxt}>MESSAGES</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Messages')}>
+          <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
             <Image
             source={require('../image/settings.jpg')}
-            style={ {height:85, width:65, right:60, borderRadius:70/2}}/>
+            style={ {height:78, width:65,  borderRadius:70/2}}/>
             <Text style={styles.btnTxt}>SETTINGS</Text>
           </TouchableOpacity>
+          </ScrollView>
         </View>
-      </ScrollView>
+      
      )
  }
  const styles = StyleSheet.create({
@@ -84,21 +86,40 @@
       borderWidth: 1,
       borderRadius: 20,
       backgroundColor: 'white',
-      width: 340,
-      height: 85,
+      width: 160,
+      height: 105,
       padding: 10,
       marginTop: 15,
+      top:20,
       left:25,
-      flexDirection:'row',
+      flexDirection:'column',
       justifyContent: 'center',
       alignItems: 'center',
-      shadowColor: 'orchid',
+      shadowColor: 'purple',
+      elevation: 30,
+    },
+    btn2: {
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 20,
+      backgroundColor: 'white',
+      top:-340,
+      width: 160,
+      height: 105,
+      padding: 10,
+      bottom:365,
+      marginTop: 15,
+      left:195,
+      flexDirection:'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: 'purple',
       elevation: 30,
     },
     btnTxt: {
-      color: 'purple',
+      color: 'limegreen',
       fontWeight: 'bold',
-      fontSize: 20,
+      fontSize: 18,
     },
     });
 

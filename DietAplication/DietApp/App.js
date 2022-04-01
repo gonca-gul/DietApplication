@@ -20,9 +20,11 @@
  import Notification from './src/pages/Notifications';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
  import AntIcon from "react-native-vector-icons/AntDesign";
+ import Ionicons from 'react-native-vector-icons/Ionicons';
  import FoodCalori from './src/pages/FoodCalori';
  import Settings from './src/pages/Settings';
  import U_HomePage from './src/pages/U_HomePage';
+ import U_Profile from './src/pages/U_Profile';
 
 
 const Tab = createBottomTabNavigator();
@@ -53,7 +55,7 @@ const TabNavigator = () => {
     ),
     tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
     <Tab.Screen name="NOTIFICATIONS"  options={{  
-    tabBarIcon: () => (<AntIcon name='bells' size={24} color='purple' />) }}  component={Notification}/>
+    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
   </Tab.Navigator>
    );
  }
@@ -62,7 +64,7 @@ const TabNavigator = () => {
  const TabUserNavigator = () => {
   return(
  <Tab.Navigator screenOptions={({ route }) => ({
-     tabBarActiveTintColor: "purple",
+     tabBarActiveTintColor: "black",
      tabBarInactiveTintColor: "purple",
      tabBarLabelStyle: {
      fontSize: 13,
@@ -84,9 +86,9 @@ const TabNavigator = () => {
        title="SAVE"
        color='limegreen'/>
    ),
-   tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
+   tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={U_Profile}/>
    <Tab.Screen name="NOTIFICATIONS"  options={{  
-   tabBarIcon: () => (<AntIcon name='bells' size={24} color='purple' />) }}  component={Notification}/>
+   tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
    </Tab.Navigator>
   );
 }
