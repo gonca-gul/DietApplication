@@ -11,11 +11,11 @@
 
  function U_HomePage({navigation}){
   const images = [
-    require('../image/slide1.jpg'),
-    require('../image/slide2.jpg'),
-    require('../image/slide3.jpg'),
-    require('../image/slide4.jpg'),
-    require('../image/slide5.jpg'),
+    require('../image/sliders/slide1.jpg'),
+    require('../image/sliders/slide2.jpg'),
+    require('../image/sliders/slide3.jpg'),
+    require('../image/sliders/slide4.jpg'),
+    require('../image/sliders/slide5.jpg'),
   ];
      return(
       
@@ -47,9 +47,9 @@
           style={ {height:70, width:70}}/>
             <Text style={styles.btnTxt}>MY DIET</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Exercise')}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Exercises')}>
           <Image
-          source={require('../image/exercise.jpg')}
+          source={require('../image/exercises/exercise.jpg')}
           style={ {height:65, width:75,  borderRadius:70/2, marginTop:10}}/> 
             <Text style={styles.btnTxt}> EXERCISE</Text>
           </TouchableOpacity>

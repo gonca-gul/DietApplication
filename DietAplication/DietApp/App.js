@@ -25,6 +25,8 @@
  import Settings from './src/pages/Settings';
  import U_HomePage from './src/pages/U_HomePage';
  import U_Profile from './src/pages/U_Profile';
+ import Exercises from './src/pages/Exercises';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -149,6 +151,15 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Settings" component={Settings} 
          options={{ title: 'Settings',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Exercises" component={Exercises} 
+         options={{ title: 'EXERCISES',
          headerTitleStyle: {
           color: 'ivory',
         },
