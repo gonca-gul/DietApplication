@@ -10,23 +10,23 @@ function Exercises({navigation}){
        return(
         
           <View View style={styles.cantainer}>
-            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('DietList')}>
+            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Butt_Kicks')}>
             <Image
-            source={require('../image/exercises/Vpipe.jpg')}
-            style={ {height:100, width:70}}/>
-              <Text style={styles.btnTxt}>Inverted V Pipe</Text>
+            source={require('../image/exercises/butt-kicks.png')}
+            style={ {height:70, width:90,marginBottom:10,}}/>
+              <Text style={styles.btnTxt}>Butt Kicks</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Exercise')}>
             <Image
-            source={require('../image/exercises/leglift2.jpg')}
-            style={ {height:70, width:90, marginBottom:10,}}/> 
-              <Text style={styles.btnTxt}> W Leg Lifts</Text>
+            source={require('../image/exercises/double-leg-raise.jpg')}
+            style={ {height:70, width:90, marginBottom:10, marginTop:10}}/> 
+              <Text style={styles.btnTxt}> Double Leg Raise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
             <Image
-            source={require('../image/exercises/superman.jpg')}
+            source={require('../image/exercises/straight-leg-raise.png')}
             style={ {height:80, width:75,marginBottom:10,}}/>
-              <Text style={styles.btnTxt}>Superman</Text>
+              <Text style={styles.btnTxt}>Straight Leg Raise</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
             <Image
@@ -37,26 +37,26 @@ function Exercises({navigation}){
             <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
             <Image
             source={require('../image/exercises/climber.jpg')}
-            style={ {height:75, width:75,  marginTop:10, marginBottom:10,}}/>
+            style={ {height:75, width:75,  marginBottom:5,}}/>
               <Text style={styles.btnTxt}>Mountier Climber</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
             <Image
-            source={require('../image/exercises/crunch.jpg')}
+            source={require('../image/exercises/reverse-crunch.jpg')}
             style={ {height:70, width:90,  marginTop:10 ,marginBottom:10,}}/>
-              <Text style={styles.btnTxt}>Crunch</Text>
+              <Text style={styles.btnTxt}>Reverse Crunch</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
             <Image
               source={require('../image/exercises/squat.jpg')}
               style={ {height:80, width:82,marginBottom:10,}}/>
-              <Text style={styles.btnTxt}>Squats</Text>
+              <Text style={styles.btnTxt}>Squat</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
             <Image
-              source={require('../image/exercises/bridge.jpg')}
+              source={require('../image/exercises/cobra.png')}
               style={ {height:85, width:85}}/>
-              <Text style={styles.btnTxt}>Bridge</Text>
+              <Text style={styles.btnTxt}>Cobra Stretch</Text>
             </TouchableOpacity>
           </View>
        )

@@ -26,6 +26,7 @@
  import U_HomePage from './src/pages/U_HomePage';
  import U_Profile from './src/pages/U_Profile';
  import Exercises from './src/pages/Exercises';
+ import Butt_Kicks from './src/pages/Exercises/Butt_Kicks';
 
 
 
@@ -160,6 +161,15 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Exercises" component={Exercises} 
          options={{ title: 'EXERCISES',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Butt_Kicks" component={Butt_Kicks} 
+         options={{ title: 'Inverted V Pipe',
          headerTitleStyle: {
           color: 'ivory',
         },
