@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView, TouchableHighlight  } from 'react-native';
 
-function Butt_Kicks({navigation}){
+function Straight_Leg_Raise({navigation}){
     let [time, setTime] = React.useState(0);
     const replayTimer = () => {
         if (time === 0) {
@@ -23,57 +23,61 @@ function Butt_Kicks({navigation}){
         }else {
             setTimeout(() => {
                 setTime(time-1)
-            }, 1000)
+            }, 2000)
         }
     return(
+    <ScrollView>
         <View style={{backgroundColor:'white', flex:1}}>
-            <Image style={styles.image}  source={require('../../image/exercises/butt-kicks.png')}></Image>
+            <Image style={styles.image}  source={require('../../image/exercises/straight-leg-raise.png')}></Image>
             <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['white', 'lavenderblush', 'thistle']} style={styles.linearView}>
                 <Text style={styles.timer} onChange={setTime}>{time}</Text>
-                <Text style={{left:55, marginTop:15,fontSize:19, fontWeight:'bold'}}>SECOND</Text>
+                <Text style={{left:52, marginTop:15,fontSize:19, fontWeight:'bold'}}>REPEAT</Text>
             </LinearGradient>
             <View style={styles.txtView}>
-                <Text style={styles.txt}>Stand tall with your feet shoulder-width apart and face forward.Start kicking your feet up, until the heels touch the glutes, and pump your arms at the same time.</Text>
+                <Text style={styles.txt}>Support your head with your arm. Raise your leg as straight as you can. Make sure your leg is parallel to the floor and not back. Then slowly lower it to the ground.</Text>
                 <TouchableOpacity onPress={replayTimer} style={styles.touchReplay}>
                     <MaterialIcon name="replay-30" size={45} color="white" style={styles.replay}  />
                 </TouchableOpacity>
             </View>
         </View>
+    </ScrollView>
     );
 }
 const styles = StyleSheet.create({
 
 image:{
     alignSelf: 'center',
-    height:260,
+    marginTop:45,
+    height:280,
     width:400,
     resizeMode:"stretch",
     },
 linearView:{
     backgroundColor: 'white',
-    height:180,
     top:10,
-    width:180,
+    height:170,
+    width:170,
     left:110,
     borderWidth:2,
     borderColor: 'gainsboro',
     borderRadius:110,
-    shadowColor: 'hotpink',
-    elevation:40,
+    shadowColor: 'purple',
+    elevation:30,
     },
 txtView:{
     backgroundColor: 'white',
     bottom:20,
-    height:150,
+    height:180,
     width:400,
-    marginTop:55,
+    marginTop:50,
+    marginBottom:15,
     justifyContent:'center',
     borderRadius:50,
     shadowColor: 'purple',
     elevation:40,
     },
 txt:{
-    top:35,
+    top:75,
     marginLeft:40,
     marginRight:30,
     fontSize:20,
@@ -90,14 +94,14 @@ touchReplay: {
     height:60,
     width:75,
     left:170,
-    top:40,
+    top:70,
     /*bottom:80,*/
     borderRadius:40,
     backgroundColor:'mediumvioletred',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:35,
+    marginBottom:100,
     },
 });
 
-export default Butt_Kicks;
+export default Straight_Leg_Raise;

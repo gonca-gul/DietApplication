@@ -11,51 +11,51 @@ function Exercises({navigation}){
         
           <View View style={styles.cantainer}>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Butt_Kicks')}>
-            <Image
-            source={require('../image/exercises/butt-kicks.png')}
-            style={ {height:70, width:90,marginBottom:10,}}/>
+              <Image
+                source={require('../image/exercises/butt-kicks.png')}
+                style={ {height:70, width:90,marginBottom:10,}}/>
               <Text style={styles.btnTxt}>Butt Kicks</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Exercise')}>
-            <Image
-            source={require('../image/exercises/double-leg-raise.jpg')}
-            style={ {height:70, width:90, marginBottom:10, marginTop:10}}/> 
+            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Double_Leg_Raise')}>
+              <Image
+                source={require('../image/exercises/double-leg-raise.jpg')}
+                style={ {height:70, width:90, marginBottom:10, marginTop:10}}/> 
               <Text style={styles.btnTxt}> Double Leg Raise</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
-            <Image
-            source={require('../image/exercises/straight-leg-raise.png')}
-            style={ {height:80, width:75,marginBottom:10,}}/>
+            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Straight_Leg_Raise')}>
+              <Image
+                source={require('../image/exercises/straight-leg-raise.png')}
+                style={ {height:80, width:75,marginBottom:10,}}/>
               <Text style={styles.btnTxt}>Straight Leg Raise</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
-            <Image
-            source={require('../image/exercises/plank.jpg')}
-            style={ {height:60, width:90,marginBottom:10, marginTop:10}}/>
+            <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Plank')}>
+              <Image
+                source={require('../image/exercises/plank.jpg')}
+                style={ {height:60, width:90,marginBottom:10, marginTop:10}}/>
               <Text style={styles.btnTxt}>Plank</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
-            <Image
-            source={require('../image/exercises/climber.jpg')}
-            style={ {height:75, width:75,  marginBottom:5,}}/>
+            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Climber')}>
+              <Image
+                source={require('../image/exercises/climber.jpg')}
+                style={ {height:75, width:75,  marginBottom:5,}}/>
               <Text style={styles.btnTxt}>Mountier Climber</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
-            <Image
-            source={require('../image/exercises/reverse-crunch.jpg')}
-            style={ {height:70, width:90,  marginTop:10 ,marginBottom:10,}}/>
+            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Reverse_Crunch')}>
+              <Image
+                source={require('../image/exercises/reverse-crunch.jpg')}
+                style={ {height:70, width:90,  marginTop:10 ,marginBottom:10,}}/>
               <Text style={styles.btnTxt}>Reverse Crunch</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
-            <Image
-              source={require('../image/exercises/squat.jpg')}
-              style={ {height:80, width:82,marginBottom:10,}}/>
+            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Squat')}>
+              <Image
+                source={require('../image/exercises/squat.jpg')}
+                style={ {height:80, width:82,marginBottom:10,}}/>
               <Text style={styles.btnTxt}>Squat</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
-            <Image
-              source={require('../image/exercises/cobra.png')}
-              style={ {height:85, width:85}}/>
+            <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Cobra')}>
+              <Image
+                source={require('../image/exercises/cobra.png')}
+                style={ {height:85, width:85}}/>
               <Text style={styles.btnTxt}>Cobra Stretch</Text>
             </TouchableOpacity>
           </View>

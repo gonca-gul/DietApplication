@@ -27,6 +27,14 @@
  import U_Profile from './src/pages/U_Profile';
  import Exercises from './src/pages/Exercises';
  import Butt_Kicks from './src/pages/Exercises/Butt_Kicks';
+ import Double_Leg_Raise from './src/pages/Exercises/Double_Leg_Raise';
+ import Straight_Leg_Raise from './src/pages/Exercises/Straight_Leg_Raise';
+ import Plank from './src/pages/Exercises/Plank';
+ import Climber from './src/pages/Exercises/Climber';
+ import Reverse_Crunch from './src/pages/Exercises/Reverse_Crunch';
+import Squat from './src/pages/Exercises/Squat';
+import Cobra from './src/pages/Exercises/Cobra';
+
 
 
 
@@ -169,7 +177,70 @@ const TabNavigator = () => {
         },
         }} />
         <Stack.Screen name="Butt_Kicks" component={Butt_Kicks} 
-         options={{ title: 'Inverted V Pipe',
+         options={{ title: 'Butt Kicks',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Double_Leg_Raise" component={Double_Leg_Raise} 
+         options={{ title: 'Double Leg Raise',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Straight_Leg_Raise" component={Straight_Leg_Raise} 
+         options={{ title: 'Straight Leg Raise',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Plank" component={Plank} 
+         options={{ title: 'Plank',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="Climber" component={Climber} 
+         options={{ title: 'Mountier Climber',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Reverse_Crunch" component={Reverse_Crunch} 
+         options={{ title: 'Reverse Crunch',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Squat" component={Squat} 
+         options={{ title: 'Squat',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Cobra" component={Cobra} 
+         options={{ title: 'Cobra Stretch',
          headerTitleStyle: {
           color: 'ivory',
         },
