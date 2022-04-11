@@ -34,6 +34,7 @@
  import Reverse_Crunch from './src/pages/Exercises/Reverse_Crunch';
 import Squat from './src/pages/Exercises/Squat';
 import Cobra from './src/pages/Exercises/Cobra';
+import Clients from './src/pages/Clients';
 
 
 
@@ -55,7 +56,11 @@ const TabNavigator = () => {
       },
     })}
     >
-    <Tab.Screen name="HOME"  options={{ 
+    <Tab.Screen name="HOME"  options={{
+    headerTitleStyle: {
+          color: 'ivory',
+          fontSize:22,
+        },
     tabBarIcon: () => (<AntIcon name='home' size={24} color='purple'/>) }} component={D_HomePage}/>
     <Tab.Screen name="PROFİLE"  options={{ 
     headerRight: () => (
@@ -112,9 +117,11 @@ const TabNavigator = () => {
         <Stack.Screen name="DietTracker" component={Welcome} 
          options={{
           title: 'DİET TRACKER',
+          headerTitleAlign: "center",
           headerTitleStyle: {
             color: 'purple',
           },
+          headerTintColor: "#fff",
           headerStyle: {
             backgroundColor: 'ivory',
           },
@@ -125,6 +132,7 @@ const TabNavigator = () => {
           headerTitleStyle: {
             color: 'ivory',
           },
+          headerTintColor: "#fff",
           headerStyle: {
             backgroundColor: 'limegreen',
           },
@@ -135,6 +143,7 @@ const TabNavigator = () => {
           headerTitleStyle: {
             color: 'ivory',
           },
+          headerTintColor: "#fff",
           headerStyle: {
             backgroundColor: 'limegreen',
           },
@@ -154,8 +163,22 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Clients" component={Clients} 
+         options={{ title: 'My Client List',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'white',
+          fontSize:22,
+        },
+        headerTintColor: "linen",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+          
         },
         }} />
         <Stack.Screen name="Settings" component={Settings} 
@@ -163,6 +186,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -172,6 +196,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -181,6 +206,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -190,6 +216,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -199,6 +226,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -208,6 +236,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -217,6 +246,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -226,6 +256,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -235,6 +266,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },
@@ -244,6 +276,7 @@ const TabNavigator = () => {
          headerTitleStyle: {
           color: 'ivory',
         },
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'limegreen',
         },

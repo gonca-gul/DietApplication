@@ -7,35 +7,34 @@ import AntIcon from "react-native-vector-icons/AntDesign";
 import SearchBar from 'react-native-search-bar';
 
 function D_HomePage({navigation}) {
-    return (
-      <ScrollView>
+  return (
+    <ScrollView>
       <View View style={styles.cantainer}>
         <Image style={styles.image} blurRadius={2} source={require('../../src/image/food.jpg')} />
           <SearchBar
-          placeholder="Search Other Dietitian"
+          placeholder="Search Client Profile"
           width={340}
           marginTop={35}
           left={20}
-          height={50}
-          />
+          height={50}/>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
-          <Image style={ {height:95, width:75,  borderRadius:70/2}} source={require('../../src/image/foodcalori.jpg')} />
+            <Image style={ {height:95, width:75,  borderRadius:70/2}} source={require('../../src/image/foodcalori.jpg')} />
             <Text style={styles.btnTxt}>Food Calori</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('ClientList')}>
-          <AntIcon  name="team" color="limegreen"  size={65}  />
+          <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Clients')}>
+            <Image style={ {height:85, width:75,  borderRadius:70/2}} source={require('../../src/image/list.jpg')} />
             <Text style={styles.btnTxt}> My Clients</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn3}  onPress={()=>navigation.navigate('Settings')}>
-          <Image style={ {height:95, width:75,  borderRadius:70/2}} source={require('../../src/image/settings.jpg')} />
+            <Image style={ {height:85, width:75,  borderRadius:70/2}} source={require('../../src/image/settings.jpg')} />
             <Text style={styles.btnTxt}>Settings</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('Messages')}>
-            <Image style={ {height:70, width:75,  borderRadius:70/2, marginTop:15, marginBottom:10}} source={require('../../src/image/message.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('Messages')}>
+            <Image style={ {height:70, width:70,  borderRadius:70/2, marginTop:10, marginBottom:10}} source={require('../../src/image/message.png')} />
             <Text style={styles.btnTxt}>Messages</Text>
           </TouchableOpacity>
-          </View>
-      </ScrollView>
+        </View>
+    </ScrollView>
 
  );
 }
