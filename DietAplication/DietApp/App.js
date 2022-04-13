@@ -35,6 +35,7 @@
 import Squat from './src/pages/Exercises/Squat';
 import Cobra from './src/pages/Exercises/Cobra';
 import Clients from './src/pages/Clients';
+import CreateDiet from './src/pages/CreateDiet';
 
 
 
@@ -179,6 +180,18 @@ const TabNavigator = () => {
         headerStyle: {
           backgroundColor: 'limegreen',
           
+        },
+        }} />
+        <Stack.Screen name="CreateDiet" component={CreateDiet} 
+         options={{ title: 'Create a Diet',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+          fontSize:24,
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
         },
         }} />
         <Stack.Screen name="Settings" component={Settings} 
