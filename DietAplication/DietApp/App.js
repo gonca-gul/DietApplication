@@ -36,13 +36,15 @@ import Squat from './src/pages/Exercises/Squat';
 import Cobra from './src/pages/Exercises/Cobra';
 import Clients from './src/pages/Clients';
 import CreateDiet from './src/pages/CreateDiet';
-
+import Dietitians from './src/pages/Dietitians';
+import { NotificationProvider } from 'react-native-internal-notification';
 
 
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
    return(
+    <NotificationProvider>
   <Tab.Navigator screenOptions={({ route }) => ({
       tabBarActiveTintColor: "purple",
       tabBarInactiveTintColor: "purple",
@@ -74,6 +76,7 @@ const TabNavigator = () => {
     <Tab.Screen name="NOTIFICATIONS"  options={{  
     tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
   </Tab.Navigator>
+  </NotificationProvider>
    );
  }
 
@@ -113,6 +116,7 @@ const TabNavigator = () => {
  const Stack = createNativeStackNavigator();
  function App() {
    return (
+    <NotificationProvider>
      <NavigationContainer>
        <Stack.Navigator>
         <Stack.Screen name="DietTracker" component={Welcome} 
@@ -152,6 +156,7 @@ const TabNavigator = () => {
         <Stack.Screen name="SignUp" component={SignUp} 
          options={{
           title: 'Sign Up',
+          headerTitleAlign: "center",
          }}/>
         <Stack.Screen name="D_HomePage" component={TabNavigator}
          options={{ headerShown: false,
@@ -206,6 +211,16 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Exercises" component={Exercises} 
          options={{ title: 'EXERCISES',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Dietitians" component={Dietitians} 
+         options={{ title: 'DIETITIANS',
          headerTitleStyle: {
           color: 'ivory',
         },
@@ -296,6 +311,7 @@ const TabNavigator = () => {
         }} />
         </Stack.Navigator>
      </NavigationContainer>
+     </NotificationProvider>
 
    );
  }

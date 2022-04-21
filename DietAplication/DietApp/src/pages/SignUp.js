@@ -3,14 +3,40 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert, ScrollView  } from 'react-native';
+import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert, ScrollView,AsyncStorage  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import CheckBox from '@react-native-community/checkbox';
+import axios from 'axios';
+import { useNotification } from 'react-native-internal-notification';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
- function SignUp() {
-    const [toggleCheckBox, setToggleCheckBox] = React.useState(false)
-    const [toggleCheckBox2, setToggleCheckBox2] = React.useState(false)
+ function SignUp({navigation}) {
+    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const notification = useNotification();
+
+
+    const signUpDietitian = async () => {
+        axios.post('http://10.0.2.2:5000/api/dietitians', { email:email, password: password })
+        .then(response => console.log(response.data));
+        navigation.navigate("Login");
+        notification.showNotification({
+          title: 'Your Account Has Been Successfully Created',
+          message: 'Please Login Your Account',
+          icon: <FontAwesome name="check-circle" size={45} color='purple' />,
+      });
+   };
+
+    const signUpUser = async () => {
+          axios.post('http://10.0.2.2:5000/api/users', { email:email, password: password })
+          .then(response => console.log(response.data));
+          navigation.navigate("UserLogin");
+          notification.showNotification({
+            title: 'Your Account Has Been Successfully Created',
+            message: 'Please Login Your Account',
+            icon: <FontAwesome name="check-circle" size={45} color='purple' />,
+        });
+     };
 
     return (
         <View style={styles.container}>
@@ -19,35 +45,28 @@ import CheckBox from '@react-native-community/checkbox';
                 colors={['white', 'mistyrose']}
                 style={styles.linearGradient}> 
                     <Text style={styles.topTxt}>Create Account</Text>
-                    <TextInput style={styles.nameInput} placeholder="First Name"  />
-                    <TextInput style={styles.nameInput} placeholder="Last Name"  />
-                    <TextInput style={styles.nameInput} placeholder="Email"  />
-                    <AntIcon style={styles.icon1} name="mail" color="green" size={20} />
+                    <TextInput style={styles.nameInput} placeholder="Email" 
+                        fontSize={18}
+                        onChangeText={email => setEmail(email)} />
+                    <AntIcon style={styles.icon1} name="mail" color="purple" size={20} />
                     <TextInput style={styles.nameInput} placeholder="Password" 
-                    name='password' secureTextEntry 
-                    value={password}
-                    enablesReturnKeyAutomatically
-                    onChangeText={text => setPassword(text)}/> 
-                    <AntIcon style={styles.icon2} name="key" color="green" size={20} />
-                    <CheckBox
-                    tintColors={{ true: 'green', false: 'green' }}
-                    style={styles.CheckBox}
-                    disabled={false}
-                    value={toggleCheckBox}
-                    onValueChange={(newValue) => setToggleCheckBox(newValue)}/>
-                    <Text style={styles.checkTxt}>Are You a Dietitian?</Text>
-                    <CheckBox
-                    style={styles.CheckBox}
-                    tintColors={{ true: 'green', false: 'green' }}
-                    disabled={false}
-                    value={toggleCheckBox2}
-                    onValueChange={(newValue) => setToggleCheckBox2(newValue)}/>
-                    <Text style={styles.checkTxt}>Are You a Client</Text>
-                    <TouchableOpacity style={styles.button1} >
-                    <LinearGradient colors={['limegreen', 'green']} style={styles.gradient}>
-                    <Text  style={styles.buttonText1}>Get Started</Text>
-                    </LinearGradient>
-                    </TouchableOpacity> 
+                        fontSize={18}
+                        name='password' secureTextEntry 
+                        value={password}
+                        enablesReturnKeyAutomatically
+                        onChangeText={password => setPassword(password)} />
+                    <AntIcon style={styles.icon2} name="key" color="purple" size={20} />
+                    <TouchableOpacity style={styles.button} onPress={(signUpDietitian)}  >
+                        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={[ '#642B73', '#C6426E']} style={styles.gradient}>
+                        <Text  style={styles.buttonText}>Register Dietitian</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    <Text  style={{color: 'black', fontSize:20,top:40, fontWeight:'bold'}}>OR</Text>
+                    <TouchableOpacity style={styles.button}  onPress={(signUpUser)} >
+                        <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={[  '#C6426E', '#642B73']} style={styles.gradient}>
+                        <Text  style={styles.buttonText}>Register User</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
             </LinearGradient>
           </ScrollView> 
         </View> 
@@ -68,14 +87,12 @@ topTxt: {
     color: 'purple',
     fontSize: 30,
     fontWeight: 'bold',
-    bottom: 50,
-    top:15,
+    bottom:100,
 },
 nameInput: {
-    top:20,
     height: 40,
     width: 300,
-    bottom:40,
+    bottom:80,
     borderBottomWidth: 1,
     borderBottomColor: 'green',
     marginTop: 50,
@@ -83,45 +100,35 @@ nameInput: {
 icon1: {
     position: 'absolute',
     left:320,
-    top: 360,
+    top: 185,
 },
 icon2: {
     position: 'absolute',
     left:320,
-    top: 450,
+    top: 275,
 },
-CheckBox: {
-    left: 135,
-    top:65,
-},
-checkTxt:{
-    right:45,
-    top:35,
-    fontSize: 20,
-    color: 'purple',
-    fontWeight: 'bold',
-},
+
 gradient: {
     flex: 1,
     justifyContent: 'center',
     alignItems:'center',
     borderRadius: 5,
-    width: 260,
+    width: 220,
     borderRadius: 18,
+    
 },
-button1: {
-    width: 260,
+button: {
+    width: 220,
     borderColor: 'mistyrose',
     borderWidth: 2,
-    height: 75,
+    height: 80,
     padding: 10,
-    marginTop: 20,
     top:40,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
 },
-buttonText1: {
+buttonText: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',

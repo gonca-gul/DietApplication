@@ -18,9 +18,9 @@
     require('../image/sliders/slide5.jpg'),
   ];
      return(
-      
+      <ScrollView>
         <View View style={styles.cantainer}>
-          <ScrollView>
+         
         <SearchBar
           placeholder="Find Your Dietitian"
           width={360}
@@ -59,6 +59,12 @@
           style={ {height:80, width:75,  borderRadius:70/2}}/>
             <Text style={styles.btnTxt}>FOOD CALORI</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Dietitians')}>
+          <Image
+          source={require('../image/dietitians.png')}
+          style={ {height:65, width:75,  borderRadius:70/2, marginTop:10}}/>
+            <Text style={styles.btnTxt}>DIETITIANS</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Messages')}>
           <Image
           source={require('../image/message.png')}
@@ -71,14 +77,15 @@
             style={ {height:78, width:65,  borderRadius:70/2}}/>
             <Text style={styles.btnTxt}>SETTINGS</Text>
           </TouchableOpacity>
-          </ScrollView>
         </View>
-      
+        </ScrollView>
+ 
      )
  }
  const styles = StyleSheet.create({
     cantainer: {
       flex:1,
+      height:700,
       backgroundColor: 'white',
     },
     btn: {
