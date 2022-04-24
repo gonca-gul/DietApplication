@@ -5,28 +5,61 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import {
+  isLoggedIn,
+  setAuthTokens,
+  clearAuthTokens,
+  getAccessToken,
+  getRefreshToken,
+} from 'react-native-axios-jwt';
 
 
 function Login({navigation}) {
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const handleSignInPress = async () => {
+    if (email.length === 0 || password.length === 0) {
+      alert ( 'Email or Password Cannot be Empty!' ), () => false;
+    } else {
+        await axios.post('http://10.0.2.2:5000/api/dietitians/login', {
+          email: email,
+          password: password,
+        })
+        .then(async response => {
+          await AsyncStorage.setItem('token' , JSON.stringify(response.data.token));
+          const data = await AsyncStorage.getItem('token');
+          console.log(data) 
+          navigation.navigate("D_HomePage"); 
+          ;})
+          .catch ((error) => {
+            console.log('Error: ', error.response);
+          });
+                
+    }
+  };
     return (
       <View View style={styles.cantainer}>
         <AntIcon style={styles.user} name="login" color="ivory" size={150} />
-        <View style={styles.topView}>
-          <Text style={styles.topTxt}>Hello Dietitian</Text>
-          <Text style={styles.topTxt1}>Login First to Continue</Text>
-          <TextInput style={styles.nameInput} placeholder="Email"  />
-          <AntIcon style={styles.icon1} name="mail" color="green" size={20} />
+          <View style={styles.topView}>
+            <Text style={styles.topTxt}>Hello Dietitian</Text>
+            <Text style={styles.topTxt1}>Login First to Continue</Text>
+          <TextInput style={styles.nameInput} placeholder="Email"
+            onChangeText={email => setEmail(email)}  />
+            <AntIcon style={styles.icon1} 
+            name="mail" color="green" size={20} />
           <TextInput style={styles.nameInput} placeholder="Password"   
-          name='password' secureTextEntry 
-          value={password}
-          enablesReturnKeyAutomatically
-          onChangeText={text => setPassword(text)}/>
+            name='password' secureTextEntry 
+            value={password}
+            enablesReturnKeyAutomatically
+            onChangeText={password => setPassword(password)}/>
           <AntIcon style={styles.icon2} name="key" color="green" size={20} />
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('D_HomePage')}>
-          <LinearGradient colors={['mistyrose', 'darkmagenta']} style={styles.gradient}>
-            <Text style={styles.btnTxt}>Login</Text>
-          </LinearGradient>
+          <TouchableOpacity style={styles.btn}  onPress={handleSignInPress}>
+            <LinearGradient colors={['mistyrose', 'darkmagenta']} style={styles.gradient}>
+              <Text style={styles.btnTxt}>Login</Text>
+            </LinearGradient>
           </TouchableOpacity>
           <View style={styles.endView}>
             <TouchableOpacity
