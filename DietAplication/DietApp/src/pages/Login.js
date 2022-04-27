@@ -29,13 +29,14 @@ function Login({navigation}) {
           password: password,
         })
         .then(async response => {
-          await AsyncStorage.setItem('token' , JSON.stringify(response.data.token));
+          await AsyncStorage.setItem('token' , (response.data.token));
           const data = await AsyncStorage.getItem('token');
           console.log(data) 
           navigation.navigate("D_HomePage"); 
           ;})
           .catch ((error) => {
             console.log('Error: ', error.response);
+            alert ( 'Email or Password is Invalid!' )
           });
                 
     }

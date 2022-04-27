@@ -13,11 +13,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
  function SignUp({navigation}) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [username, setUsername] = React.useState('');
     const notification = useNotification();
 
 
     const signUpDietitian = async () => {
-        axios.post('http://10.0.2.2:5000/api/dietitians', { email:email, password: password })
+        axios.post('http://10.0.2.2:5000/api/dietitians', { email:email, password: password, username: username })
         .then(response => console.log(response.data));
         navigation.navigate("Login");
         notification.showNotification({
@@ -28,7 +29,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
    };
 
     const signUpUser = async () => {
-          axios.post('http://10.0.2.2:5000/api/users', { email:email, password: password })
+          axios.post('http://10.0.2.2:5000/api/users', { email:email, password: password, username: username })
           .then(response => console.log(response.data));
           navigation.navigate("UserLogin");
           notification.showNotification({
@@ -45,6 +46,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
                 colors={['white', 'mistyrose']}
                 style={styles.linearGradient}> 
                     <Text style={styles.topTxt}>Create Account</Text>
+                    <TextInput style={styles.nameInput} placeholder="Username" 
+                        fontSize={18}
+                        onChangeText={username => setUsername(username)} />
+                    <AntIcon style={styles.icon0} name="user" color="purple" size={20} />
                     <TextInput style={styles.nameInput} placeholder="Email" 
                         fontSize={18}
                         onChangeText={email => setEmail(email)} />
@@ -84,6 +89,7 @@ linearGradient: {
     width: 400,
 },
 topTxt: {
+    marginTop:50,
     color: 'purple',
     fontSize: 30,
     fontWeight: 'bold',
@@ -97,15 +103,20 @@ nameInput: {
     borderBottomColor: 'green',
     marginTop: 50,
 },
+icon0: {
+    position: 'absolute',
+    left:320,
+    top: 160,
+},
 icon1: {
     position: 'absolute',
     left:320,
-    top: 185,
+    top: 250,
 },
 icon2: {
     position: 'absolute',
     left:320,
-    top: 275,
+    top: 340,
 },
 
 gradient: {

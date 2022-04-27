@@ -65,7 +65,8 @@ const TabNavigator = () => {
           fontSize:22,
         },
     tabBarIcon: () => (<AntIcon name='home' size={24} color='purple'/>) }} component={D_HomePage}/>
-    <Tab.Screen name="PROFİLE"  options={{ 
+    <Tab.Screen name="PROFİLE"  options={{          
+      headerTitleAlign: "center",
     headerRight: () => (
       <Button 
         onPress={() => alert('Your Information Has Been Saved!')}
