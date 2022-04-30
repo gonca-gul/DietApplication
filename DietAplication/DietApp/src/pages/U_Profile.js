@@ -20,6 +20,8 @@ import {
   ContributionGraph,
   StackedBarChart
 } from "react-native-chart-kit";
+import moment from 'moment';
+
 
 const screenWidth = Dimensions.get("window").width;
 const includeExtra = true;
@@ -43,6 +45,7 @@ function U_Profile({navigation}) {
       }
     }, []);
     const data = {
+      
       labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov", "Dec"],
       datasets: [
         {
@@ -76,6 +79,7 @@ function U_Profile({navigation}) {
           setIllness(response.data.illness);
           console.log(response);
         })
+        
         .catch(function (error) {
           alert(error);
         })
@@ -93,6 +97,12 @@ function U_Profile({navigation}) {
           height: height,
           medicine: medicine,
           illness: illness,
+          },{
+          headers: {Authorization : 'Bearer '  +  data,
+          },
+        })
+        await axios.post('http://10.0.2.2:5000/api/weights', {
+          weight: weight,
           },{
           headers: {Authorization : 'Bearer '  +  data,
           },
@@ -147,6 +157,7 @@ function U_Profile({navigation}) {
             <Text style={styles.topTxt1}>Length</Text>
             <MaterialIcon name="date-range" size={28} color="orange"  style={styles.rightIcons}/>
             <TextInput style={styles.TxtRight} 
+              dateFormat="YYYY-MM-DD"
               value={birthday.toString()}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
             <Text style={styles.topTxt1}>Age</Text>

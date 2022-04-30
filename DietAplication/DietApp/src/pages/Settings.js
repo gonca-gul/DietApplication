@@ -22,10 +22,6 @@ function Settings({navigation}) {
           <AntIcon  name="questioncircleo" color="limegreen"  size={30} />
             <Text style={styles.btnTxt}>About</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Feedback')}>
-          <AntIcon  name="form" color="limegreen"  size={30} />
-            <Text style={styles.btnTxt}>Feedback</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('LogOut')}>
           <AntIcon  name="logout" color="purple"  size={30} />
             <Text style={styles.btnTxt}>LogOut</Text>

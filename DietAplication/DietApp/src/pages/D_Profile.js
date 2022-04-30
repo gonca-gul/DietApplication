@@ -3,11 +3,11 @@ import type {Node} from 'react';
 import { View, Text,Image, StyleSheet ,TextInput, ScrollView,Button,  TouchableOpacity, Touchable, TouchableHighlight } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import {Picker} from '@react-native-picker/picker';
-import DatePicker from 'react-native-date-picker'
 import * as ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {useEffect} from "react";
+import DatePicker from 'react-native-datepicker';
 
 const includeExtra = true;
 
@@ -48,7 +48,7 @@ function D_Profile(){
                 setGender(response.data.gender);
                 setBirthday(response.data.birthday);
                 setBio(response.data.bio)
-                console.log(response);
+                console.log(response.data);
             })
             .catch(function (error) {
                 alert(error);
@@ -68,7 +68,8 @@ function D_Profile(){
             headers: {Authorization : 'Bearer '  +  data,
             },
           })
-          .then(async response => {           
+          .then(async response => {  
+            console.log(response.data);         
       });
     }
     return(
@@ -115,7 +116,7 @@ function D_Profile(){
                 onChangeText={email => setEmail(email)}  />
             <Text style={styles.txt}> Gender </Text>
             <Picker
-                style={{ height: 50, width: 280, left: 38, marginTop:20, marginBottom:20}}
+                style={{ height: 50, width: 280, left: 38, marginTop:20}}
                 selectedValue={gender}
                 value={gender}
                 onValueChange={gender =>setGender(gender)}>
@@ -124,9 +125,9 @@ function D_Profile(){
             </Picker>
             <Text style={styles.txt} > Date of Birth </Text>
             <TextInput style={styles.nameInput} 
-            value={birthday}
-            //look that
-            onChangeText={birthday => setBirthday(birthday)}/>
+              dateFormat="YYYY-MM-DD"
+              value={birthday}
+              onChangeText={date => setBirthday(birthday)}></TextInput>
             <Text style={styles.txt}> Experience </Text>
             <TextInput style={styles.nameInput}
                 value={bio} 
@@ -205,12 +206,7 @@ nameInput: {
   fontSize:17,
   fontWeight:'bold',
 },
-btnPicker:{
-  marginTop: 20,
-  width:250,
-  height:55,
-  left: 50,
-},
+
 btnSnd: {
     height:60,
     top:30,
@@ -225,6 +221,11 @@ btnSnd: {
     fontWeight: 'bold',
     textAlign:'center',
     fontSize: 20,
+  },
+  datePickerStyle: {
+    width:250,
+    marginLeft:50,
+    marginTop:30,
   },
 });
 
