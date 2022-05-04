@@ -37,6 +37,8 @@ import Cobra from './src/pages/Exercises/Cobra';
 import Clients from './src/pages/Clients';
 import CreateDiet from './src/pages/CreateDiet';
 import Dietitians from './src/pages/Dietitians';
+import About from './src/pages/About';
+import GetProfile from './src/pages/GetProfile';
 import { NotificationProvider } from 'react-native-internal-notification';
 
 
@@ -60,21 +62,17 @@ const TabNavigator = () => {
     })}
     >
     <Tab.Screen name="HOME"  options={{
-    headerTitleStyle: {
+      headerTitleAlign: "center",
+      headerTitleStyle: {
           color: 'ivory',
           fontSize:22,
         },
     tabBarIcon: () => (<AntIcon name='home' size={24} color='purple'/>) }} component={D_HomePage}/>
     <Tab.Screen name="PROFİLE"  options={{          
       headerTitleAlign: "center",
-    headerRight: () => (
-      <Button 
-        onPress={() => alert('Your Information Has Been Saved!')}
-        title="SAVE"
-        color='limegreen'/>
-    ),
     tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
-    <Tab.Screen name="NOTIFICATIONS"  options={{  
+    <Tab.Screen name="NOTIFICATIONS"  options={{ 
+      headerTitleAlign: "center",
     tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
   </Tab.Navigator>
   </NotificationProvider>
@@ -210,6 +208,17 @@ const TabNavigator = () => {
           backgroundColor: 'limegreen',
         },
         }} />
+        <Stack.Screen name="About" component={About} 
+         options={{ title: 'ABOUT US',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
         <Stack.Screen name="Exercises" component={Exercises} 
          options={{ title: 'EXERCISES',
          headerTitleStyle: {
@@ -222,6 +231,16 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Dietitians" component={Dietitians} 
          options={{ title: 'DIETITIANS',
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="GetProfile" component={GetProfile} 
+         options={{ title: 'PROFILE',
          headerTitleStyle: {
           color: 'ivory',
         },

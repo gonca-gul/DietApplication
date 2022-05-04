@@ -4,6 +4,10 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView, TouchableHighlight  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+
 
 
 function Settings({navigation}) {
@@ -11,15 +15,15 @@ function Settings({navigation}) {
       <View View style={styles.cantainer}>
           <ScrollView>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('ChangePassword' )}>
-          <AntIcon  name="lock" color="limegreen"  size={33} />
+          <FontAwesome  name="lock" color="green"  size={33} />
             <Text style={styles.btnTxt}>Change Password</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('ChangePassword')}>
-          <AntIcon  name="bells" color="limegreen"  size={30} />
+          <Ionicons  name="notifications-circle" color="mediumvioletred"  size={34} />
             <Text style={styles.btnTxt}>Notification</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('About')}>
-          <AntIcon  name="questioncircleo" color="limegreen"  size={30} />
+          <AntIcon  name="questioncircle" color="darkorange"  size={30} />
             <Text style={styles.btnTxt}>About</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('LogOut')}>

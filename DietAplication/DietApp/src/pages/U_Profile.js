@@ -158,7 +158,7 @@ function U_Profile({navigation}) {
             <MaterialIcon name="date-range" size={28} color="orange"  style={styles.rightIcons}/>
             <TextInput style={styles.TxtRight} 
               dateFormat="YYYY-MM-DD"
-              value={birthday.toString()}
+              value={birthday}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
             <Text style={styles.topTxt1}>Age</Text>
             <MaterialComIcon name="gender-male" size={25} color="orange"  style={styles.leftIcons}/>
