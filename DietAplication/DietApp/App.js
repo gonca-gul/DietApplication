@@ -39,6 +39,7 @@ import CreateDiet from './src/pages/CreateDiet';
 import Dietitians from './src/pages/Dietitians';
 import About from './src/pages/About';
 import GetProfile from './src/pages/GetProfile';
+import Messages from './src/pages/Messages';
 import { NotificationProvider } from 'react-native-internal-notification';
 
 
@@ -96,15 +97,9 @@ const TabNavigator = () => {
      },
    })}
    >
-   <Tab.Screen name="HOME"  options={{ 
+   <Tab.Screen name="HOME"  options={{ headerTitleAlign: "center",
    tabBarIcon: () => (<AntIcon name='home' size={24} color='purple' />) }} component={U_HomePage}/>
-   <Tab.Screen name="PROFİLE"  options={{ 
-   headerRight: () => (
-     <Button 
-       onPress={() => alert('Your Information Has Been Saved!')}
-       title="SAVE"
-       color='limegreen'/>
-   ),
+   <Tab.Screen name="PROFİLE"  options={{ headerTitleAlign: "center",
    tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={U_Profile}/>
    <Tab.Screen name="NOTIFICATIONS"  options={{  
    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
@@ -200,6 +195,7 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Settings" component={Settings} 
          options={{ title: 'Settings',
+         headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
         },
@@ -221,6 +217,7 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Exercises" component={Exercises} 
          options={{ title: 'EXERCISES',
+         headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
         },
@@ -231,6 +228,17 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Dietitians" component={Dietitians} 
          options={{ title: 'DIETITIANS',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="Messages" component={Messages} 
+         options={{ title: 'MESSAGES',
          headerTitleStyle: {
           color: 'ivory',
         },

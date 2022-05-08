@@ -2,33 +2,21 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar, Pressable  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar, VirtualizedList  } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNotification } from 'react-native-internal-notification';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 
 function Dietitians({navigation}) {
-    const notification = useNotification();
     const [username, setUsername] = React.useState();
-    const handleNotificationTestClick = React.useCallback(() => {
-        notification.showNotification({
-            title: 'Your Request Has Been Sent',
-            message: 'Dont Forget to Check Your Diet List',
-            icon: <FontAwesome name="check-circle" color='purple' size={45} />,
-            onPress: () => {
-                alert('Pressed');
-            },
-        });
-    }, [notification]);
-
     React.useEffect(() => {
         dietitians();
-       }, [username]);
+       });
     const dietitians = () => {
         axios
         .get('http://10.0.2.2:5000/api/dietitians')
@@ -41,31 +29,45 @@ function Dietitians({navigation}) {
           .then(function () {
         })
     };
-   
+
+    const reqDiet = async (item) => {
+      const data = await AsyncStorage.getItem('token');
+      await axios
+      .patch('http://10.0.2.2:5000/api/dietLists/requestDietList/'+item.item,{},{
+        headers: {Authorization : 'Bearer '  +  data,
+        },
+      })
+      .then(async response => {
+        console.log(data);
+        console.log(response.data);
+        console.log(item.item);
+      })
+        .catch(function (error) { 
+        alert(error);
+      })
+        .then(function () {
+      })
+  };
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
           <FlatList
             style={{marginTop:10}}
             data={username}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={(list) => {
-                
+            keyExtractor={item =>{ item}}
+            renderItem={(item) => {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
-                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{username})}>
+                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile')}>
                         <Image style={styles.image}  source={require}></Image>
-                        <Text style={styles.txt}>{list.item}</Text>
+                        <Text style={styles.txt}>{item.item}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                         style={styles.btnReq}
-                
-                onPress={handleNotificationTestClick}>
+                        onPress={() => reqDiet(item)}>
+                <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />  
               </TouchableOpacity>
-                        <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
-                        
-                    
                 </ScrollView>
             </View>
           );
@@ -110,8 +112,11 @@ txtbtn:{
     },
 btnReq:{
     width:100,
-    color:'blue',
-    }
+    height:100,
+    },
+txtReq: {
+  color:'red',
+}
   });
 
 export default Dietitians; 

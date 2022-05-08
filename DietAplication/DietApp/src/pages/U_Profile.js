@@ -28,6 +28,7 @@ const includeExtra = true;
 
 function U_Profile({navigation}) {
   const [gender, setGender] = React.useState();
+  const [months, setMonths] = React.useState();
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
@@ -35,7 +36,8 @@ function U_Profile({navigation}) {
   const [height, setHeight] = React.useState( );
   const [username, setUsername] = React.useState('');
   const [medicine, setMedicine] = React.useState('');
-    const [response, setResponse] = React.useState(null);
+  const [response, setResponse] = React.useState(null);
+
     const onButtonPress = React.useCallback((type, options) => {
       if (type === 'capture') {
         ImagePicker.launchCamera(options, setResponse); 
@@ -44,21 +46,14 @@ function U_Profile({navigation}) {
         ImagePicker.launchImageLibrary(options, setResponse);
       }
     }, []);
-    const data = {
-      
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov", "Dec"],
-      datasets: [
-        {
-          data: [10, 20, 15, 40, 50, 45,60,45,72,75,52,65],
-          color: (opacity = 1) => 'coral', // optional
-          strokeWidth: 2 // optional
-        }
-      ],
-      legend: ["Monthly Chart"] // optional
-    };
+    
+  
 
     React.useEffect(() => {
       getInfo();
+     }, []);
+     React.useEffect(() => {
+      getWeight();
      }, []);
 
       const getInfo= async() => {
@@ -86,6 +81,45 @@ function U_Profile({navigation}) {
         .then(function () {
         });
   }
+  var month2=new Array();
+  var weight2=new Array();
+  const getWeight= async() => {
+    const data = await AsyncStorage.getItem('token');
+  await  axios
+    .get('http://10.0.2.2:5000/api/weights',{
+      headers: {Authorization : 'Bearer '  +  data,
+       },
+      })
+      
+    .then(function (response) {
+       weight2=(response.data.weight);
+      month2=(response.data.months);
+  
+      setWeight(response.data.weights);
+      console.log(response.data);
+      setMonths(response.data.months);
+      console.log(response.data);
+   
+    })
+    
+    .catch(function (error) {
+      alert(error);
+    })
+    .then(function () {
+    });
+}
+
+const data = {
+  labels: month2,
+  datasets: [
+    {
+      data: weight2,
+      color: (opacity = 1) => 'coral', // optional
+      strokeWidth: 2 // optional
+    }
+  ],
+  legend: ["Monthly Chart"] // optional
+};
 
   const handlePress = async () => {
       const data = await AsyncStorage.getItem('token');
@@ -203,7 +237,7 @@ function U_Profile({navigation}) {
             color: (opacity = 255) => "purple",
             }}
             withInnerLines={false}
-            yAxisLabel={' '}
+            yAxisLabel={''}
             style={{ right:5, borderRadius: 20}}
             bezier/>
         </View>

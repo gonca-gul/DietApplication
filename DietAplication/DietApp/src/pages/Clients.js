@@ -4,24 +4,46 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar  } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ANIMALS = ["Gonca Gül", "Cansu Çil", "Chicken", "Dragon", "Camel", "Camel", "Camel"];
+
 
 function Clients({navigation}) {
+    const [username, setUsername] = React.useState();
+    React.useEffect(() => {
+        dietitians();
+       });
+    const dietitians = async() => {
+        const data = await AsyncStorage.getItem('token');
+        await axios
+        .get('http://10.0.2.2:5000/api/dietitians/myUsers',{
+            headers: {Authorization : 'Bearer '  +  data,
+            },
+        })
+        .then(function (response) {
+          setUsername(response.data);
+        })
+          .catch(function (error) {
+          alert(error);
+        })
+          .then(function () {
+        })
+    };
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
           <FlatList
             style={{marginTop:10}}
-            data={ANIMALS}
+            data={username}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={(animal) => {
+            renderItem={(list) => {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
                     <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('CreateDiet')}>
                         <Image style={styles.image}  source={require}></Image>
-                        <Text style={styles.txt}>{animal.item}</Text>
+                        <Text style={styles.txt}>{list.item}</Text>
                         <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
                         <Text style={styles.txtbtn}>Create a Diet</Text>
                     </TouchableOpacity>
