@@ -28,7 +28,7 @@ const includeExtra = true;
 
 function U_Profile({navigation}) {
   const [gender, setGender] = React.useState();
-  const [months, setMonths] = React.useState();
+  const [months, setMonths] = React.useState(new Array());
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
@@ -95,9 +95,7 @@ function U_Profile({navigation}) {
     .then(function (response) {
       setWeights(response.data.weights);
       console.log(weights);
-      setMonths(response.data.months);
-      console.log(response.data);
-   
+      setMonths(response.data.months);   
     })
     
     .catch(function (error) {
@@ -143,9 +141,15 @@ const data = {
           headers: {Authorization : 'Bearer '  +  data,
           },
         })
-        .then(async response => {
-          console.log(response.data.weight)
-    });
+        await axios
+      .get('http://10.0.2.2:5000/api/weights',{
+        headers: {Authorization : 'Bearer '  +  data,
+        },
+        })
+      .then(function (response) {
+      setWeights(response.data.weights);
+      setMonths(response.data.months);
+    })
   }
     return (
       <View View style={styles.cantainer}>
