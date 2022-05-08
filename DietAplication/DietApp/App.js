@@ -41,6 +41,7 @@ import About from './src/pages/About';
 import GetProfile from './src/pages/GetProfile';
 import Messages from './src/pages/Messages';
 import { NotificationProvider } from 'react-native-internal-notification';
+import MyDiet from './src/pages/MyDiet';
 
 
 
@@ -195,6 +196,17 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Settings" component={Settings} 
          options={{ title: 'Settings',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="MyDiet" component={MyDiet} 
+         options={{ title: 'MyDiet',
          headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',

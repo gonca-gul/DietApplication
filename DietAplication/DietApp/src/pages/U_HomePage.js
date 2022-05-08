@@ -41,7 +41,7 @@
             height: 10,
             borderRadius: 10,
             marginHorizontal: 5,}} />
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('DietList')}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('MyDiet')}>
           <Image
           source={require('../image/mydiet.jpg')}
           style={ {height:70, width:70}}/>

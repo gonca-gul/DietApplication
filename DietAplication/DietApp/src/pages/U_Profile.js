@@ -32,6 +32,7 @@ function U_Profile({navigation}) {
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
+  const [weights, setWeights] = React.useState();
   const [illness, setIllness] = React.useState('');
   const [height, setHeight] = React.useState( );
   const [username, setUsername] = React.useState('');
@@ -70,7 +71,7 @@ function U_Profile({navigation}) {
           setHeight(JSON.stringify(response.data.height));
           setMedicine(response.data.medicine);
           setGender(response.data.gender);
-          setBirthday(response.data.birthday);
+          //setBirthday(response.data.birthday);
           setIllness(response.data.illness);
           console.log(response);
         })
@@ -81,8 +82,9 @@ function U_Profile({navigation}) {
         .then(function () {
         });
   }
-  var month2=new Array();
-  var weight2=new Array();
+  let month2=months;
+  let weight2=weights;
+
   const getWeight= async() => {
     const data = await AsyncStorage.getItem('token');
   await  axios
@@ -92,11 +94,7 @@ function U_Profile({navigation}) {
       })
       
     .then(function (response) {
-       weight2=(response.data.weight);
-      month2=(response.data.months);
-  
-      setWeight(response.data.weights);
-      console.log(response.data);
+      setWeights(response.data.weights);
       setMonths(response.data.months);
       console.log(response.data);
    
@@ -126,7 +124,7 @@ const data = {
       console.log(data)
         await axios.patch('http://10.0.2.2:5000/api/users/me', {
           gender: gender,
-          birthday: birthday ,
+         // birthday: birthday ,
           weight: weight,
           height: height,
           medicine: medicine,
@@ -137,12 +135,13 @@ const data = {
         })
         await axios.post('http://10.0.2.2:5000/api/weights', {
           weight: weight,
+          date:"2022-01-10",
           },{
           headers: {Authorization : 'Bearer '  +  data,
           },
         })
         .then(async response => {
-          console.log(response)
+          console.log(response.data.weight)
     });
   }
     return (
@@ -192,7 +191,7 @@ const data = {
             <MaterialIcon name="date-range" size={28} color="orange"  style={styles.rightIcons}/>
             <TextInput style={styles.TxtRight} 
               dateFormat="YYYY-MM-DD"
-              value={birthday}
+              value={birthday.toString()}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
             <Text style={styles.topTxt1}>Age</Text>
             <MaterialComIcon name="gender-male" size={25} color="orange"  style={styles.leftIcons}/>
