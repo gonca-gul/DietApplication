@@ -32,7 +32,7 @@ function U_Profile({navigation}) {
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
-  const [weights, setWeights] = React.useState();
+  const [weights, setWeights] = React.useState(new Array(1,2));
   const [illness, setIllness] = React.useState('');
   const [height, setHeight] = React.useState( );
   const [username, setUsername] = React.useState('');
@@ -82,8 +82,7 @@ function U_Profile({navigation}) {
         .then(function () {
         });
   }
-  let month2=months;
-  let weight2=weights;
+ 
 
   const getWeight= async() => {
     const data = await AsyncStorage.getItem('token');
@@ -95,6 +94,7 @@ function U_Profile({navigation}) {
       
     .then(function (response) {
       setWeights(response.data.weights);
+      console.log(weights);
       setMonths(response.data.months);
       console.log(response.data);
    
@@ -106,6 +106,9 @@ function U_Profile({navigation}) {
     .then(function () {
     });
 }
+ var month2=months;
+ var weight2=weights;
+  
 
 const data = {
   labels: month2,
