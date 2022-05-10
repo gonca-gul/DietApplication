@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar, TouchableHighlight  } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,11 +10,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function Clients({navigation}) {
+    
     const [username, setUsername] = React.useState();
     React.useEffect(() => {
-        dietitians();
+        Clients();
        });
-    const dietitians = async() => {
+    const Clients = async() => {
         const data = await AsyncStorage.getItem('token');
         await axios
         .get('http://10.0.2.2:5000/api/dietitians/myUsers',{
@@ -30,20 +31,21 @@ function Clients({navigation}) {
           .then(function () {
         })
     };
+ 
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
           <FlatList
             style={{marginTop:10}}
             data={username}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={(list) => {
+            keyExtractor={item => {item}}
+            renderItem={(item) => {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
-                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('CreateDiet')}>
+                    <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.item})}>
                         <Image style={styles.image}  source={require}></Image>
-                        <Text style={styles.txt}>{list.item}</Text>
+                        <Text style={styles.txt}>{item.item}</Text>
                         <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
                         <Text style={styles.txtbtn}>Create a Diet</Text>
                     </TouchableOpacity>

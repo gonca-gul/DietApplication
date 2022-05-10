@@ -59,7 +59,7 @@ function Dietitians({navigation}) {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
-                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile')}>
+                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{items:item.item})}>
                         <Image style={styles.image}  source={require}></Image>
                         <Text style={styles.txt}>{item.item}</Text>
                         </TouchableOpacity>

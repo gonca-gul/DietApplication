@@ -11,6 +11,7 @@ import MaterialComIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import DatePicker from 'react-native-datepicker'
 import {useEffect} from "react";
 import {
   LineChart,
@@ -71,7 +72,7 @@ function U_Profile({navigation}) {
           setHeight(JSON.stringify(response.data.height));
           setMedicine(response.data.medicine);
           setGender(response.data.gender);
-          //setBirthday(response.data.birthday);
+          setBirthday(response.data.birthday);
           setIllness(response.data.illness);
           console.log(response);
         })
@@ -125,7 +126,7 @@ const data = {
       console.log(data)
         await axios.patch('http://10.0.2.2:5000/api/users/me', {
           gender: gender,
-         // birthday: birthday ,
+          birthday: birthday ,
           weight: weight,
           height: height,
           medicine: medicine,
@@ -135,6 +136,7 @@ const data = {
           },
         })
         await axios.post('http://10.0.2.2:5000/api/weights', {
+         // weight: [0],
           weight: weight,
           date:"2022-01-10",
           },{
@@ -198,8 +200,9 @@ const data = {
             <MaterialIcon name="date-range" size={28} color="orange"  style={styles.rightIcons}/>
             <TextInput style={styles.TxtRight} 
               dateFormat="YYYY-MM-DD"
-              value={birthday.toString()}
+              value={birthday}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
+              
             <Text style={styles.topTxt1}>Age</Text>
             <MaterialComIcon name="gender-male" size={25} color="orange"  style={styles.leftIcons}/>
             <MaterialComIcon name="gender-female" size={25} color="orange"  style={styles.leftIcons}/>
@@ -310,7 +313,7 @@ rightIcons:{
     left:20,
   },
 leftIcons:{
-    left:190,
+    left:200,
     bottom:300,
   },
 TxtRight: {
@@ -332,7 +335,7 @@ TxtLeft: {
     bottom:360,
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 220,
+    marginLeft: 230,
   },
 topTxt2: {
     marginTop: 5,

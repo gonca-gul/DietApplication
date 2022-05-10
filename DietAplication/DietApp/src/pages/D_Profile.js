@@ -14,6 +14,8 @@ const includeExtra = true;
 function D_Profile(){
 
   const [gender, setGender] = React.useState();
+  const [name, setName] = React.useState();
+  const [surname, setSurname] = React.useState();
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [response, setResponse] = React.useState(null);
@@ -44,6 +46,8 @@ function D_Profile(){
             })
             .then(function (response) {
                 setUsername(response.data.username);
+                setName(response.data.name);
+                setSurname(response.data.surname);
                 setEmail(response.data.email);
                 setGender(response.data.gender);
                 setBirthday(response.data.birthday);
@@ -61,6 +65,8 @@ function D_Profile(){
         const data = await AsyncStorage.getItem('token');
         console.log(data)
           await axios.patch('http://10.0.2.2:5000/api/dietitians/me', {
+            surname: surname,
+            name: name,
             gender: gender,
             birthday: birthday,
             bio: bio,
@@ -110,6 +116,14 @@ function D_Profile(){
             <TextInput style={styles.nameInput} 
                 value={username}
                 onChangeText={username=> setUsername(username)}  />
+            <Text style={styles.txt}> Name </Text>
+            <TextInput style={styles.nameInput} 
+                value={name}
+                onChangeText={name=> setName(name)}  />
+            <Text style={styles.txt}> Surname </Text>
+            <TextInput style={styles.nameInput} 
+                value={surname}
+                onChangeText={surname=> setSurname(surname)}  />
             <Text style={styles.txt}> E-Mail </Text>
             <TextInput style={styles.nameInput} 
                 value={email}
@@ -126,7 +140,7 @@ function D_Profile(){
             <Text style={styles.txt} > Date of Birth </Text>
             <TextInput style={styles.nameInput} 
               dateFormat="YYYY-MM-DD"
-              value={birthday}
+              value={birthday.toString()}
               onChangeText={date => setBirthday(birthday)}></TextInput>
             <Text style={styles.txt}> Experience </Text>
             <TextInput style={styles.nameInput}
@@ -178,16 +192,16 @@ buttonContainer:{
   marginVertical: 8,
 },
 txt:{
-    marginTop:20,
-  top:10,
+  marginTop:30,
   flexDirection:'row',
-  left:45,
-  fontSize:15,
+  left:60,
+  color:'purple',
+  fontSize:17,
 },
 topView: {
-    bottom:120,  
+    bottom:100,  
     backgroundColor: 'white',
-    height: 700,
+    height: 1000,
     marginLeft:25,
     width:340,
     borderRadius: 20,
@@ -196,14 +210,13 @@ topView: {
   }, 
 nameInput: {
   height: 50,
-  width: 250,
+  width: 200,
   marginTop:15,
   marginLeft: 50,
   borderBottomWidth: 1,
   borderBottomColor: 'plum',
   marginBottom: 20,
-  bottom:10,
-  fontSize:17,
+  fontSize:18,
   fontWeight:'bold',
 },
 
