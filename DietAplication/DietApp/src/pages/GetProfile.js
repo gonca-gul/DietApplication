@@ -1,14 +1,22 @@
 import * as React from 'react';
 import type {Node} from 'react';
+import { NavigationContainer, useLinkProps, useRoute } from '@react-navigation/native';
 import { View, Text,Image, StyleSheet ,TextInput, ScrollView,Button,  TouchableOpacity, Touchable, TouchableHighlight } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {useEffect} from "react";
-import {dietitians} from './Dietitians';
 
-function GetProfile(){
+
+function GetProfile({navigation,route}){
+  route = useRoute();
+  const items = route.params.items; 
+  //console.log(item);
+
+  React.useEffect(() => {
+    getInfo();
+   }, []);
 
   const [gender, setGender] = React.useState();
   const [birthday, setBirthday] = React.useState(new Date())
@@ -17,18 +25,18 @@ function GetProfile(){
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [bio, setBio] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [surname, setSurname] = React.useState('');
 
 
- 
-   
-    React.useEffect(() => {
-        getInfo();
-       }, []);
+  
         const getInfo= () => { 
               axios
-            .get('http://10.0.2.2:5000/api/dietitians/&{username}/getDietitian')
+            .get('http://10.0.2.2:5000/api/dietitians/getDietitian/'+items,)
             .then(function (response) {
                 setUsername(response.data.username);
+                setName(response.data.name);
+                setSurname(response.data.surname);
                 setEmail(response.data.email);
                 setGender(response.data.gender);
                 setBirthday(response.data.birthday);
@@ -61,26 +69,14 @@ function GetProfile(){
         
         <View style={styles.topView}>
             <Text style={styles.txt}> Username </Text>
-            <Text style={styles.nameInput} 
-                value={username}
-                onChangeText={username=> setUsername(username)}  />
-            <Text style={styles.txt}> E-Mail </Text>
-            <Text style={styles.nameInput} 
-                value={email}
-                onChangeText={email => setEmail(email)}  />
-            <Text style={styles.txt}> Gender </Text>
-            <Text style={styles.nameInput}
-                value={gender} 
-                onChangeText={gender => setGender(gender)}  />
+            <Text style={styles.nameInput}>{username}</Text>
+            <Text style={styles.txt}> Name </Text>
+            <Text style={styles.nameInput}>{name}</Text>
+            <Text style={styles.txt}> Surname </Text>
+            <Text style={styles.nameInput}>{surname}</Text>
             <Text style={styles.txt} > Date of Birth </Text>
-            <Text style={styles.nameInput} 
-              dateFormat="YYYY-MM-DD"
-              value={birthday}
-              onChangeText={date => setBirthday(birthday)}></Text>
             <Text style={styles.txt}> Experience </Text>
-            <Text style={styles.nameInput}
-                value={bio} 
-                onChangeText={bio => setBio(bio)}  />
+            <Text style={styles.nameInput}>{bio}</Text>
             
         </View>
     </ScrollView>
