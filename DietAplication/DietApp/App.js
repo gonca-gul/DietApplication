@@ -206,7 +206,7 @@ const TabNavigator = () => {
         },
         }} />
          <Stack.Screen name="MyDiet" component={MyDiet} 
-         options={{ title: 'MyDiet',
+         options={{ title: 'My Diet List',
          headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
@@ -261,12 +261,13 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="GetProfile" component={GetProfile} 
          options={{ title: 'PROFILE',
+         headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
         },
         headerTintColor: "#fff",
         headerStyle: {
-          backgroundColor: 'limegreen',
+          backgroundColor: 'lightgreen',
         },
         }} />
         <Stack.Screen name="Butt_Kicks" component={Butt_Kicks} 

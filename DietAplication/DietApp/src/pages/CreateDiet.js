@@ -14,7 +14,7 @@ import axios from 'axios';
 function CreateDiet({navigation,route}) {
     route = useRoute();
     const item = route.params.item; 
-    //console.log(item); 
+    console.log(item); 
 
     const [breakfast, setBreakfast] = React.useState();
     const [midMorning, setMidmorning] = React.useState();
@@ -23,7 +23,7 @@ function CreateDiet({navigation,route}) {
     const [dinner, setDinner] = React.useState();
     const [snack, setSnack] = React.useState();
     const [note, setNote] = React.useState();
-    const [totalCalorie, setTotalCal] = React.useState(Number);
+    const [totalCalorie, setTotalCal] = React.useState();
 
     React.useEffect(() => {
         getDiet();
@@ -59,7 +59,7 @@ function CreateDiet({navigation,route}) {
           setEveningSnack(response.data.eveningSnack);
           setDinner(response.data.dinner);
           setSnack(response.data.snack);
-          setTotalCal(response.data.totalCalorie);
+          setTotalCal(JSON.stringify(response.data.totalCalorie));
           setNote(response.data.note);
           console.log(response.data);
         })

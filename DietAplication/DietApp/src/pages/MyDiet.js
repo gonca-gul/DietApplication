@@ -44,7 +44,7 @@ function MyDiet({navigation}) {
         setEveningSnack(response.data.eveningSnack);
         setDinner(response.data.dinner);
         setSnack(response.data.snack);
-        setTotalCal(response.data.totalCalorie);
+        setTotalCal(JSON.stringify(response.data.totalCalorie));
         setNote(response.data.note);
         console.log(response.data);
       })
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   cantainer: {
     flex:1,
     backgroundColor: 'white',
-    height:1770,
+    height:1720,
   },
   linearGradient: {
       alignItems: 'center',

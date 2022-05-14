@@ -2,11 +2,10 @@ import * as React from 'react';
 import type {Node} from 'react';
 import { NavigationContainer, useLinkProps, useRoute } from '@react-navigation/native';
 import { View, Text,Image, StyleSheet ,TextInput, ScrollView,Button,  TouchableOpacity, Touchable, TouchableHighlight } from 'react-native';
-import AntIcon from "react-native-vector-icons/AntDesign";
-import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {useEffect} from "react";
+import LinearGradient from 'react-native-linear-gradient';
 
 
 function GetProfile({navigation,route}){
@@ -19,17 +18,14 @@ function GetProfile({navigation,route}){
    }, []);
 
   const [gender, setGender] = React.useState();
-  const [birthday, setBirthday] = React.useState(new Date())
+  const [birthday, setBirthday] = React.useState()
   const [open, setOpen] = React.useState(false)
   const [response, setResponse] = React.useState(null);
-  const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [bio, setBio] = React.useState('');
   const [name, setName] = React.useState('');
   const [surname, setSurname] = React.useState('');
 
-
-  
         const getInfo= () => { 
               axios
             .get('http://10.0.2.2:5000/api/dietitians/getDietitian/'+items,)
@@ -37,7 +33,6 @@ function GetProfile({navigation,route}){
                 setUsername(response.data.username);
                 setName(response.data.name);
                 setSurname(response.data.surname);
-                setEmail(response.data.email);
                 setGender(response.data.gender);
                 setBirthday(response.data.birthday);
                 setBio(response.data.bio)
@@ -49,36 +44,35 @@ function GetProfile({navigation,route}){
             .then(function () {
             });
         }
-  
     return(
       <View View style={styles.cantainer} >
         <ScrollView>
-        <Image style={styles.backImg} source={require('../../src/image/ProfileBack.jpg')} />
+        <LinearGradient
+          colors={[ 'lightgreen', 'cadetblue' ]}
+          style={styles.linearGradient}>
+        </LinearGradient>
+          <View style={styles.infoView}>
           <View  style={styles.image}>
-        
           <Image 
             style={{
               marginBottom:20,
               width:150,
               height: 150,
-              borderRadius: 150/2,
-              borderWidth:1,
-              borderColor: 'plum',}}
-            source={require('../../src/image/ProfileBack.jpg')}/>
+              alignSelf:"center",
+              borderRadius: 130/2,}}
+            source={require}/>
+            <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{name}  {surname}</Text>
         </View>
-        
-        <View style={styles.topView}>
-            <Text style={styles.txt}> Username </Text>
-            <Text style={styles.nameInput}>{username}</Text>
-            <Text style={styles.txt}> Name </Text>
-            <Text style={styles.nameInput}>{name}</Text>
-            <Text style={styles.txt}> Surname </Text>
-            <Text style={styles.nameInput}>{surname}</Text>
-            <Text style={styles.txt} > Date of Birth </Text>
-            <Text style={styles.txt}> Experience </Text>
-            <Text style={styles.nameInput}>{bio}</Text>
+        <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
+            <Text style={styles.txt}>Gender</Text>
+            <Text style={styles.nameInput}>  {gender}</Text>
+            <Text style={styles.txt} > Birthday </Text>
+            <Text style={styles.nameInput}>{birthday} </Text>
+        </View>
+          </View>
+            <Text style={styles.txtAbouttitle}> About {name} </Text>
+            <Text style={styles.about}>{bio}</Text>
             
-        </View>
     </ScrollView>
 </View>
     )
@@ -87,81 +81,58 @@ const styles = StyleSheet.create({
 container: {
   flex:1,
 },
-backImg:{
-    height:180,
-  },
-icon1:{
-  left: 62,
-  marginTop:18,
-  bottom:110,
-},
-icon2:{
-  left: 85,
-  marginTop:18,
-  top:25,
-  bottom:115,
-},
+
 image: {
-  left:120,
-  bottom:100,
+  bottom:60,
   marginBottom:20,
   width:150,
   height: 150,
-  borderRadius: 150/2,
-  borderWidth:1,
-  borderColor: 'plum',
+  borderRadius: 130/2,
+  borderWidth:2,
+  elevation:50,
+  alignSelf:"center",
+  shadowColor:"purple",
+  borderColor: 'white',
 },
-
+linearGradient: {
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: 5,
+  height: 150,
+  width: 400,
+},
 txt:{
-    marginTop:20,
-  top:10,
-  flexDirection:'row',
-  left:45,
-  fontSize:15,
+  marginTop:10,
+  marginLeft:50,
+  fontSize:19,
 },
-topView: {
-    bottom:80,  
-    backgroundColor: 'white',
-    height: 700,
-    marginLeft:25,
-    width:340,
-    borderRadius: 20,
-    shadowColor: 'purple',
-    elevation: 15,
-  }, 
+infoView:{
+  backgroundColor:"white",
+},
 nameInput: {
-  height: 50,
-  width: 250,
-  marginTop:15,
-  marginLeft: 50,
-  borderBottomWidth: 1,
-  borderBottomColor: 'plum',
-  marginBottom: 20,
-  bottom:10,
-  fontSize:17,
+  height: 60,
+  width: 90,
+  right:70,
+  marginTop:40,
+  marginBottom: 10,
+  fontSize:21,
+  fontWeight:'bold',
+  color:'lightseagreen'
+},
+txtAbouttitle:{
+  fontSize:24,
+  textAlign:"center",
+  marginTop:20,
   fontWeight:'bold',
 },
+about:{
+  fontSize:19,
+  marginTop:20,
+  marginLeft:30,
+  marginRight:30,
+  color:'cadetblue'
+ },
 
-btnSnd: {
-    height:60,
-    top:30,
-    width:150,
-    borderRadius:30,
-    backgroundColor:'mediumvioletred',
-    justifyContent: 'center',
-    alignSelf:'center',
-  },
-  btnTxt: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign:'center',
-    fontSize: 20,
-  },
-  datePickerStyle: {
-    width:250,
-    marginLeft:50,
-    marginTop:30,
-  },
 });
 
 export default GetProfile; 

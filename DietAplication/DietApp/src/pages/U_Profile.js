@@ -202,8 +202,7 @@ const data = {
               dateFormat="YYYY-MM-DD"
               value={birthday}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
-              
-            <Text style={styles.topTxt1}>Age</Text>
+            <Text style={styles.topTxt1}>Birthday</Text>
             <MaterialComIcon name="gender-male" size={25} color="orange"  style={styles.leftIcons}/>
             <MaterialComIcon name="gender-female" size={25} color="orange"  style={styles.leftIcons}/>
             <TextInput style={styles.TxtLeft}
@@ -226,17 +225,16 @@ const data = {
             </TouchableOpacity>
           <Text style={{
             color:"teal",
-            left:35, 
-            bottom:80,
+            textAlign:"center", 
+            bottom:70,
             marginTop:30,
-            marginBottom:15,
-            fontSize:21,
+            fontSize:23,
             fontWeight:'bold'}}>Your Monthly Weight Chart!</Text>
         <View style={styles.centerView}>
           <LineChart
             data={data}
             width={screenWidth-45}
-            height={220}
+            height={240}
             verticalLabelRotation={20}
             chartConfig={{
             backgroundGradientFrom: "white",
@@ -292,9 +290,9 @@ buttonContainer:{
     marginVertical: 8,
   },
 userNameText:{
-    bottom:140,
+    bottom:150,
     textAlign:'center',
-    fontSize:22,
+    fontSize:25,
     fontWeight:'bold',
     color:'black',
   },
@@ -313,7 +311,7 @@ rightIcons:{
     left:20,
   },
 leftIcons:{
-    left:200,
+    left:210,
     bottom:300,
   },
 TxtRight: {
@@ -335,7 +333,7 @@ TxtLeft: {
     bottom:360,
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 230,
+    marginLeft: 240,
   },
 topTxt2: {
     marginTop: 5,
@@ -345,14 +343,8 @@ topTxt2: {
     marginLeft: 220,
   },
 centerView:{
-    bottom:90,
-    backgroundColor: 'white',
-    height: 250,
-    marginLeft:25,
-    width:340,
-    borderRadius: 20,
-    shadowColor: 'purple',
-    elevation: 15,
+    bottom:50,
+    marginLeft:30,
   },
   btnSnd: {
     height:40,

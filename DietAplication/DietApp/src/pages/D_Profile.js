@@ -142,7 +142,7 @@ function D_Profile(){
               dateFormat="YYYY-MM-DD"
               value={birthday.toString()}
               onChangeText={date => setBirthday(birthday)}></TextInput>
-            <Text style={styles.txt}> Experience </Text>
+            <Text style={styles.txt}> Biography </Text>
             <TextInput style={styles.nameInput}
                 value={bio} 
                 onChangeText={bio => setBio(bio)}  />
