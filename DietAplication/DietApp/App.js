@@ -39,9 +39,14 @@ import CreateDiet from './src/pages/CreateDiet';
 import Dietitians from './src/pages/Dietitians';
 import About from './src/pages/About';
 import GetProfile from './src/pages/GetProfile';
-import Messages from './src/pages/Messages';
+import Messages from './src/pages/U_Messages';
 import { NotificationProvider } from 'react-native-internal-notification';
 import MyDiet from './src/pages/MyDiet';
+import D_Messages from './src/pages/D_Messages';
+import Question from './src/pages/Questions';
+import AnswerDetail from './src/pages/AnswerDetail';
+
+
 
 
 
@@ -251,6 +256,40 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Messages" component={Messages} 
          options={{ title: 'MESSAGES',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="D_Messages" component={D_Messages} 
+         options={{ title: 'MESSAGES',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="Question" component={Question} 
+         options={{ title: 'QUESTIONS',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="AnswerDetail" component={AnswerDetail} 
+         options={{ title: 'Answer To the Question',
+         headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
         },

@@ -26,6 +26,7 @@ function Butt_Kicks({navigation}){
             }, 1000)
         }
     return(
+        <ScrollView>
         <View style={{backgroundColor:'white', flex:1}}>
             <Image style={styles.image}  source={require('../../image/exercises/butt-kicks.png')}></Image>
             <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['white', 'lavenderblush', 'thistle']} style={styles.linearView}>
@@ -39,6 +40,7 @@ function Butt_Kicks({navigation}){
                 </TouchableOpacity>
             </View>
         </View>
+    </ScrollView>
     );
 }
 const styles = StyleSheet.create({
@@ -63,7 +65,7 @@ linearView:{
     },
 txtView:{
     backgroundColor: 'white',
-    bottom:20,
+    bottom:30,
     height:150,
     width:400,
     marginTop:55,

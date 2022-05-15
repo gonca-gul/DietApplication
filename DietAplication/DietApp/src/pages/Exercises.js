@@ -10,6 +10,7 @@ function Exercises({navigation}){
        return(
         
           <View View style={styles.cantainer}>
+            <ScrollView>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Butt_Kicks')}>
               <Image
                 source={require('../image/exercises/butt-kicks.png')}
@@ -58,7 +59,9 @@ function Exercises({navigation}){
                 style={ {height:85, width:85}}/>
               <Text style={styles.btnTxt}>Cobra Stretch</Text>
             </TouchableOpacity>
+            </ScrollView>
           </View>
+          
        )
    }
 const styles = StyleSheet.create({

@@ -29,7 +29,7 @@ function D_HomePage({navigation}) {
             <Image style={ {height:85, width:75,  borderRadius:70/2}} source={require('../../src/image/settings.jpg')} />
             <Text style={styles.btnTxt}>Settings</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('Messages')}>
+          <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('D_Messages')}>
             <Image style={ {height:70, width:70,  borderRadius:70/2, marginTop:10, marginBottom:10}} source={require('../../src/image/message.png')} />
             <Text style={styles.btnTxt}>Messages</Text>
           </TouchableOpacity>
