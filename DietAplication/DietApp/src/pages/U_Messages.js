@@ -2,12 +2,13 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import axios from 'axios';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, ScrollView,FlatList,Alert  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity,FlatList,SafeAreaView  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView } from 'react-native-virtualized-view';
 
 
 
-function Messages({navigation}) {
+function U_Messages({navigation}) {
 
   const [subject, setSubject] = React.useState();
   const [question, setQuestion] = React.useState();
@@ -52,83 +53,104 @@ function Messages({navigation}) {
   };
 
   return(
-      <View>
+    <ScrollView>
+      <View >
       <View style={styles.topView}>
+      <Text  style={{fontSize:28, textAlign:"center", marginTop:10}}>Ask a Question</Text>
         <TextInput style={styles.input} placeholder="question subject" multiline={true}
           value={subject}
           onChangeText={subject=> setSubject(subject)}  />
         <TextInput style={styles.input} placeholder="question" multiline={true}
           value={question}
           onChangeText={question=> setQuestion(question)}  />
-      </View>
-        <TouchableOpacity style={styles.askBtn} onPress={sendQuestion}>
+          <TouchableOpacity style={styles.askBtn} onPress={sendQuestion}>
               <Text  style={styles.buttonTxt}>Send Question</Text>
-        </TouchableOpacity> 
+          </TouchableOpacity> 
+          </View>
               <FlatList
-                style={{marginTop:30}}
+                nestedScrollEnabled={true}
+                style={{marginTop:80}}
                 data={data1}
                 keyExtractor={( item) => item._id}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>
-                        <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('AnswerDetail',{answerdetail:item._id})}}>
-                        <Text style={styles.txt}>{item.question}</Text>
-                        <Text>{item.subject}</Text>
-                        </TouchableOpacity>
+                  <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('AnswerDetail',{answerdetail:item._id})}}>
+                    <Text style={styles.sbjt}>Subject: {item.subject}</Text>
+                    <Text style={styles.txt}>{item.question}</Text>
+                  </TouchableOpacity>
                 </View>
               );
             }}/>
-           </View> 
+          </View>
+        </ScrollView>
     );
-          }
+}
 
 const styles = StyleSheet.create({
 topView:{
   backgroundColor:"white",
-  height:250,
-  borderRadius:20,
+  width:350,
+  alignSelf:"center",
+  height:300,
+  borderRadius:10,
+  marginTop:20,
+  elevation:30,
 },
 input:{
-  height:80,
-  width:350,
+  height:70,
+  width:300,
   fontSize:19,
   borderBottomColor:"plum",
   borderBottomWidth:1,
   alignSelf:"center",
   marginTop:20,
   textAlign:"center",
-  backgroundColor: 'mistyrose',
+  backgroundColor:'rgba(52, 52, 52, 0.1)',
   borderRadius:10,
+  opacity: .6,
 },
 buttonTxt:{
   fontSize:18,
+  color:"white"
 },
 listItem: {
- 
-  height:80,
-  backgroundColor: "white",
-  borderColor: "thistle",
-  elevation:20,
-  shadowColor:"purple" 
+  width:350,
+  //height:80,
+  backgroundColor:'white',
+  alignSelf:"center",
+  elevation:30,
+  //top:30,
+  marginBottom:5,
+  borderColor:"mediumvioletred",
+  borderLeftWidth:4,
+  shadowColor:"plum",
+  //opacity: .8,
 },
 askBtn: {
-  width: 200,
-  borderColor: 'mistyrose',
+  width: 180,
+  borderColor: 'white',
   borderWidth: 2,
   height: 60,
   borderRadius: 18,
-  bottom:30,
+  marginTop:30,
   alignSelf:"center",
-  backgroundColor: 'plum',
+  backgroundColor: 'mediumvioletred',
   justifyContent: 'center',
   alignItems: 'center',
 },
 txt:{
-  left: 25,
-  marginTop:30,
-  fontSize:20,
-  fontWeight:'500',
+  marginLeft:10,
+  fontSize:23,
+  marginTop:10,
+  //fontWeight:"600",
   color:'black',
 },
+sbjt:{
+  marginLeft:5,
+  fontSize:17,
+  marginTop:10,
+  fontWeight:"500"
+},
 });
-export default Messages; 
+export default U_Messages; 
