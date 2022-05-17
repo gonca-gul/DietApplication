@@ -26,13 +26,14 @@ function Question({navigation,route}) {
     const getAnswers = async () => {
       const data = await AsyncStorage.getItem('token');
       await axios
-        .get('http://10.0.2.2:5000/api/questions/getAnswer/'+questions,{
+        .get('http://10.0.2.2:5000/api/questions/getQuestion/'+questions,{
           headers: {Authorization : 'Bearer '  +  data,
            },
           })
         .then(function (response) {
           setSubject(response.data.subject);
           setQuestion(response.data.question);
+          setAnswer(response.data.answer);
           setSender(response.data.sender);
           setCreatedAd(response.data.createdAt);
         })
