@@ -44,13 +44,18 @@ function AnswerDetail({navigation,route}) {
           })
       };
  
- 
   return(
     <ScrollView>
+      <View>
       <View style={styles.topView}>
-          <Text style={styles.input}>{subject} {to}</Text>
-          <Text style={styles.input}>{question}{answer}{createdAt}</Text>
-          
+      <View style={styles.input}>
+      <Text style={styles.txt}>Subject: {subject}</Text>
+          <Text style={styles.txt}>From: {to}</Text>
+          <Text style={styles.txt}>Your Question: {question}</Text>
+          <Text style={styles.txt}>Dietitian's Answer: {answer}</Text>
+          <Text style={styles.txt}>Date: {createdAt}</Text>
+          </View>
+          </View>  
       </View>
     </ScrollView>
     );
@@ -59,38 +64,35 @@ function AnswerDetail({navigation,route}) {
 const styles = StyleSheet.create({
 topView:{
   backgroundColor:"white",
-  height:500,
-  borderRadius:20,
+  height:600,
+  width:350,
+  borderRadius:10,
+  elevation:30,
+  alignSelf:"center",
+  marginTop:30,
+  marginBottom:30,
 },
 input:{
-  height:80,
-  width:350,
-  fontSize:19,
-  borderBottomColor:"plum",
-  borderBottomWidth:1,
-  alignSelf:"center",
-  marginTop:20,
-  textAlign:"center",
-  backgroundColor: 'mistyrose',
-  borderRadius:10,
-},
-buttonTxt:{
-  fontSize:18,
-},
-listItem: {
-  height:80,
+  height:500,
+  width:300,
+  fontSize:20,
   backgroundColor: "white",
-  borderColor: "thistle",
   elevation:20,
-  shadowColor:"purple" 
+  shadowColor:"purple",
+  alignSelf:"center",
+  elevation:30,
+  top:50,
+  borderColor:"mediumvioletred",
+  borderLeftWidth:4,
+},
+txt:{
+  height:100,
+  width:300,
+  fontSize:20,
+  marginLeft:20,
+  alignSelf:"center",
+  top:10,
 },
 
-txt:{
-  left: 25,
-  marginTop:30,
-  fontSize:20,
-  fontWeight:'500',
-  color:'black',
-},
 });
 export default AnswerDetail; 

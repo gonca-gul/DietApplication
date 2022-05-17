@@ -2,9 +2,8 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import axios from 'axios';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity,FlatList,SafeAreaView  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity,FlatList,ScrollView  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ScrollView } from 'react-native-virtualized-view';
 
 
 
@@ -46,7 +45,6 @@ function U_Messages({navigation}) {
     },{
       headers: {Authorization : 'Bearer '  +  data,
       },
-      
     })
     .then(function (response) {
     })
@@ -54,7 +52,7 @@ function U_Messages({navigation}) {
 
   return(
     <ScrollView>
-      <View >
+      <View>
       <View style={styles.topView}>
       <Text  style={{fontSize:28, textAlign:"center", marginTop:10}}>Ask a Question</Text>
         <TextInput style={styles.input} placeholder="question subject" multiline={true}
@@ -68,14 +66,13 @@ function U_Messages({navigation}) {
           </TouchableOpacity> 
           </View>
               <FlatList
-                nestedScrollEnabled={true}
-                style={{marginTop:80}}
+                style={{marginTop:80,marginBottom:30,}}
                 data={data1}
                 keyExtractor={( item) => item._id}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>
-                  <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('AnswerDetail',{answerdetail:item._id})}}>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('AnswerDetail',{answerdetail:item._id})}}>
                     <Text style={styles.sbjt}>Subject: {item.subject}</Text>
                     <Text style={styles.txt}>{item.question}</Text>
                   </TouchableOpacity>
@@ -83,7 +80,7 @@ function U_Messages({navigation}) {
               );
             }}/>
           </View>
-        </ScrollView>
+          </ScrollView>
     );
 }
 
@@ -116,16 +113,13 @@ buttonTxt:{
 },
 listItem: {
   width:350,
-  //height:80,
   backgroundColor:'white',
   alignSelf:"center",
   elevation:30,
-  //top:30,
   marginBottom:5,
   borderColor:"mediumvioletred",
   borderLeftWidth:4,
   shadowColor:"plum",
-  //opacity: .8,
 },
 askBtn: {
   width: 180,
@@ -143,7 +137,6 @@ txt:{
   marginLeft:10,
   fontSize:23,
   marginTop:10,
-  //fontWeight:"600",
   color:'black',
 },
 sbjt:{
