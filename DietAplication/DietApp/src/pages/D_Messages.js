@@ -10,6 +10,7 @@ function D_Messages({navigation}) {
   const [subject, setSubject] = React.useState();
   const [question, setQuestion] = React.useState();
   const [data1, setData] = React.useState([]);
+  
     React.useEffect(() => {
         getQuestions();
        });
@@ -34,71 +35,49 @@ function D_Messages({navigation}) {
       <ScrollView>
           <View>
               <FlatList
-                style={{marginTop:30}}
+                style={{marginTop:40, marginBottom:40}}
                 data={data1}
                 keyExtractor={( item) => item._id}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>
                   <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate('Question',{questions:item._id})}}>
+                    <Text style={styles.sbjt}>Subject: {item.subject}</Text>
                     <Text style={styles.txt}>{item.question}</Text>
-                    <Text>{item.subject}</Text>
                   </TouchableOpacity>
                 </View>
               );
             }}/>
-           </View> 
-          </ScrollView>
+          </View> 
+      </ScrollView>
     );
   }
 
 const styles = StyleSheet.create({
-topView:{
-  backgroundColor:"white",
-  height:250,
-  borderRadius:20,
-},
-input:{
-  height:80,
-  width:350,
-  fontSize:19,
-  borderBottomColor:"plum",
-  borderBottomWidth:1,
-  alignSelf:"center",
-  marginTop:20,
-  textAlign:"center",
-  backgroundColor: 'mistyrose',
-  borderRadius:10,
-},
-buttonTxt:{
-  fontSize:18,
-},
+
 listItem: {
- 
-  height:80,
-  backgroundColor: "white",
-  borderColor: "thistle",
-  elevation:20,
-  shadowColor:"purple" 
-},
-askBtn: {
-  width: 200,
-  borderColor: 'mistyrose',
-  borderWidth: 2,
-  height: 60,
-  borderRadius: 18,
-  bottom:30,
+  width:350,
+  backgroundColor:'white',
   alignSelf:"center",
-  backgroundColor: 'plum',
-  justifyContent: 'center',
-  alignItems: 'center',
+  elevation:30,
+  marginBottom:5,
+  borderColor:"mediumvioletred",
+  borderLeftWidth:4,
+  shadowColor:"plum",
 },
 txt:{
-  left: 25,
-  marginTop:30,
+  marginLeft:5,
+  marginTop:20,
+  marginBottom:20,
   fontSize:20,
   fontWeight:'500',
   color:'black',
+},
+sbjt:{
+  marginLeft:5,
+  fontSize:17,
+  marginTop:10,
+  fontWeight:"500"
 },
 });
 export default D_Messages; 

@@ -35,7 +35,6 @@ function AnswerDetail({navigation,route}) {
             setQuestion(response.data.question);
             setCreatedAt(response.data.createdAt);
             setAnswer(response.data.answer);
-            console.log(response.data)
           })
             .catch(function (error) {
             alert(error);

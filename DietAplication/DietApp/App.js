@@ -277,7 +277,7 @@ const TabNavigator = () => {
         },
         }} />
          <Stack.Screen name="Question" component={Question} 
-         options={{ title: 'QUESTIONS',
+         options={{ title: 'Answer Your Questıon',
          headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',

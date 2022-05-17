@@ -60,73 +60,86 @@ function Question({navigation,route}) {
       },
     })
     .then(function (response) {
-      console.log(response)
     })
   };
   return(
     <ScrollView>
-      <View>
       <View style={styles.topView}>
-          <Text style={styles.input}>{subject} {sender}</Text>
-          <Text style={styles.input}>{question}{createdAt}</Text>
-          <TextInput style={styles.input} placeholder="question subject" multiline={true}
+        <View style={styles.input}>
+          <Text style={styles.txt}>Subject: {subject}</Text>
+          <Text style={styles.txt}>From: {sender}</Text>
+          <Text style={styles.txt}>Question: {question}</Text>
+          <Text style={styles.txt}>Date: {createdAt}</Text>
+          <TextInput style={styles.answer} placeholder="Your Answer" multiline={true}
             value={answer}
             onChangeText={answer=> setAnswer(answer)}  />
+            <TouchableOpacity style={styles.askBtn} onPress={sendQuestion}>
+            <Text  style={styles.buttonTxt}>Send Answer</Text>
+          </TouchableOpacity>
       </View>
-          <TouchableOpacity style={styles.askBtn} onPress={sendQuestion}>
-            <Text  style={styles.buttonTxt}>Send Question</Text>
-          </TouchableOpacity> 
       </View> 
     </ScrollView>
     );
   }
 
 const styles = StyleSheet.create({
-topView:{
-  backgroundColor:"white",
-  height:250,
-  borderRadius:20,
-},
-input:{
-  height:80,
-  width:350,
-  fontSize:19,
-  borderBottomColor:"plum",
-  borderBottomWidth:1,
-  alignSelf:"center",
-  marginTop:20,
-  textAlign:"center",
-  backgroundColor: 'mistyrose',
-  borderRadius:10,
-},
-buttonTxt:{
-  fontSize:18,
-},
-listItem: {
-  height:80,
-  backgroundColor: "white",
-  borderColor: "thistle",
-  elevation:20,
-  shadowColor:"purple" 
-},
-askBtn: {
-  width: 200,
-  borderColor: 'mistyrose',
-  borderWidth: 2,
-  height: 60,
-  borderRadius: 18,
-  alignSelf:"center",
-  marginTop:50,
-  backgroundColor: 'plum',
-  justifyContent: 'center',
-  alignItems: 'center',
-},
-txt:{
-  left: 25,
-  marginTop:30,
-  fontSize:20,
-  fontWeight:'500',
-  color:'black',
+  topView:{
+    backgroundColor:"white",
+    height:650,
+    width:350,
+    borderRadius:10,
+    elevation:30,
+    alignSelf:"center",
+    marginTop:30,
+    marginBottom:30,
+  },
+  input:{
+    height:550,
+    width:300,
+    fontSize:20,
+    backgroundColor: "white",
+    elevation:20,
+    shadowColor:"purple",
+    alignSelf:"center",
+    elevation:20,
+    top:50,
+    borderColor:"mediumvioletred",
+    borderLeftWidth:4,
+  },
+  txt:{
+    height:100,
+    width:280,
+    fontSize:20,
+    marginLeft:20,
+    alignSelf:"center",
+    top:10,
+  },
+  buttonTxt:{
+    fontSize:18,
+    color:"white"
+  },
+  askBtn: {
+    width: 180,
+    borderColor: 'white',
+    borderWidth: 2,
+    height: 60,
+    borderRadius: 18,
+    marginTop:30,
+    alignSelf:"center",
+    backgroundColor: 'mediumvioletred',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  answer:{
+    height:100,
+    width:240,
+    fontSize:20,
+    marginLeft:20,
+    textAlign:"center",
+    alignSelf:"center",
+    top:10,
+    borderBottomColor:"plum",
+    borderBottomWidth:1,
 },
 });
 export default Question; 

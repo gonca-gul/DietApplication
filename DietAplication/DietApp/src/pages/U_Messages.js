@@ -135,8 +135,9 @@ askBtn: {
 },
 txt:{
   marginLeft:10,
-  fontSize:23,
+  fontSize:22,
   marginTop:10,
+  marginBottom:10,
   color:'black',
 },
 sbjt:{
