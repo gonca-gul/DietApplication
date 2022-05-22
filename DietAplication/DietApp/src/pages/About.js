@@ -31,7 +31,7 @@ topView: {
     backgroundColor: 'white',
     height: 500,
     marginTop: 80,
-    marginLeft:15,
+    alignSelf:"center",
     width:360,
     borderRadius: 20,
     shadowColor: 'purple',

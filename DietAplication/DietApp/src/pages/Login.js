@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -42,8 +42,10 @@ function Login({navigation}) {
     }
   };
     return (
+      <ScrollView>
       <View View style={styles.cantainer}>
         <AntIcon style={styles.user} name="login" color="ivory" size={150} />
+        <View style={{marginTop:70,backgroundColor:"white"}}>
           <View style={styles.topView}>
             <Text style={styles.topTxt}>Hello Dietitian</Text>
             <Text style={styles.topTxt1}>Login First to Continue</Text>
@@ -70,15 +72,15 @@ function Login({navigation}) {
             </TouchableOpacity>
           </View>
         </View>
+        </View>
       </View>
+      </ScrollView>
  );
 }
 const styles = StyleSheet.create({
 cantainer: {
   flex:1,
-  flex: 0.35,
   backgroundColor: 'limegreen',
-  height: 700,
 },
 user: {
   marginTop:10,
@@ -97,10 +99,10 @@ icon2: {
   bottom:195,
 },
 topView: {
-  marginTop: 10,
+  bottom:50,
   backgroundColor: 'white',
   height: 460,
-  marginLeft:11,
+  alignSelf:"center",
   width:370,
   borderRadius: 20,
   shadowColor: 'purple',

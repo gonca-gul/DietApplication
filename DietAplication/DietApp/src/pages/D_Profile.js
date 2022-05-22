@@ -202,7 +202,7 @@ topView: {
     bottom:100,  
     backgroundColor: 'white',
     height: 1000,
-    marginLeft:25,
+    alignSelf:"center",
     width:340,
     borderRadius: 20,
     shadowColor: 'purple',

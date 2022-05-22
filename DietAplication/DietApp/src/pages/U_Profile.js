@@ -270,7 +270,7 @@ icon2:{
     bottom:115,
   },
 image: {
-    left:120,
+    alignSelf:"center",
     bottom:100,
     marginBottom:20,
     width:150,
@@ -281,7 +281,7 @@ image: {
   },
 buttonContainer:{
     height:55,
-    left:105,
+    left:110,
     bottom:145,
     alignItems:'center',
     flexDirection: 'row',
@@ -299,7 +299,7 @@ topView: {
     bottom:110,  
     backgroundColor: 'white',
     height: 360,
-    marginLeft:25,
+    alignSelf:"center",
     width:340,
     borderRadius: 20,
     shadowColor: 'purple',

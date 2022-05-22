@@ -3,10 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert,StatusBar } from 'react-native';
+import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert,StatusBar, ScrollView } from 'react-native';
  
  function Welcome({ navigation }) {
   return (
+    <ScrollView>
     <View style={styles.container}>
         <StatusBar barStyle="light-content" backgroundColor="green" />
         <LinearGradient
@@ -29,7 +30,8 @@ import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert,StatusBar 
               <Text style={styles.SignTxt}>Already Have an Account? Create Account</Text>
             </TouchableOpacity>
           </LinearGradient>
-        </View> 
+        </View>
+        </ScrollView> 
       );
     }
 
@@ -46,7 +48,6 @@ linearGradient: {
     width: 500,
 },
 image: {
-    marginTop:10,
     width:300,
     height: 200,
 },
