@@ -18,6 +18,7 @@
  import D_HomePage from './src/pages/D_HomePage';
  import D_Profile from './src/pages/D_Profile';
  import Notification from './src/pages/Notifications';
+ import D_Notifications from './src/pages/D_Notifications';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
  import AntIcon from "react-native-vector-icons/AntDesign";
  import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -39,6 +40,7 @@ import CreateDiet from './src/pages/CreateDiet';
 import Dietitians from './src/pages/Dietitians';
 import About from './src/pages/About';
 import GetProfile from './src/pages/GetProfile';
+import GetUserProfile from './src/pages/GetUserProfile';
 import Messages from './src/pages/U_Messages';
 import { NotificationProvider } from 'react-native-internal-notification';
 import MyDiet from './src/pages/MyDiet';
@@ -80,7 +82,7 @@ const TabNavigator = () => {
     tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
     <Tab.Screen name="NOTIFICATIONS"  options={{ 
       headerTitleAlign: "center",
-    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
+    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={D_Notifications}/>
   </Tab.Navigator>
   </NotificationProvider>
    );
@@ -184,7 +186,6 @@ const TabNavigator = () => {
         headerTintColor: "linen",
         headerStyle: {
           backgroundColor: 'limegreen',
-          
         },
         }} />
         <Stack.Screen name="CreateDiet" component={CreateDiet} 
@@ -307,6 +308,17 @@ const TabNavigator = () => {
         headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: 'lightgreen',
+        },
+        }} />
+         <Stack.Screen name="GetUserProfile" component={GetUserProfile} 
+         options={{ title: 'PROFILE',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'thistle',
         },
         }} />
         <Stack.Screen name="Butt_Kicks" component={Butt_Kicks} 

@@ -66,7 +66,7 @@ function Dietitians({navigation}) {
                         <TouchableOpacity
                         style={styles.btnReq}
                         onPress={() => reqDiet(item)}>
-                <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />  
+                <FontAwesome5 name="plus" size={28} color="darkgray" style={styles.icon}  />  
               </TouchableOpacity>
                 </ScrollView>
             </View>

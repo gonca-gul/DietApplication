@@ -21,7 +21,6 @@ import {
   ContributionGraph,
   StackedBarChart
 } from "react-native-chart-kit";
-import moment from 'moment';
 
 
 const screenWidth = Dimensions.get("window").width;

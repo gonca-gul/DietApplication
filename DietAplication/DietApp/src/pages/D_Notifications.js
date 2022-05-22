@@ -6,17 +6,18 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Notification(){
+function D_Notification(navigation){
     const [message, setMessage] = React.useState();
     const [data1, setData] = React.useState([]);
 
     React.useEffect(() => {
         getNotifications();
        });
+
     const getNotifications = async () => {
       const data = await AsyncStorage.getItem('token');
       await axios
-        .get('http://10.0.2.2:5000/api/notifications/getUserNotifications',{
+        .get('http://10.0.2.2:5000/api/notifications/getDietitianNotifications',{
           headers: {Authorization : 'Bearer '  +  data,
            },
           })
@@ -30,27 +31,24 @@ function Notification(){
         })
     };
    
-        return(
-                <FlatList
+    return(
+          <View>
+              <FlatList
                 style={{marginTop:20, marginBottom:20}}
                 data={data1}
-                keyExtractor={(item) => item}
+                keyExtractor={( item) => item._id}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>
-                    <ScrollView>
-                        <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.txt}>{item.message}</Text>
-                        </TouchableOpacity>
-                    </ScrollView>
+                    <Text style={styles.txt}>{item.message}</Text>
                 </View>
               );
             }}/>
-    )
-}
+          </View> 
+    );
+  }
 
 const styles = StyleSheet.create({
-
   listItem: {
     width:380,
     backgroundColor:'white',
@@ -69,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight:'500',
     color:'black',
   },
+    
     });
 
-export default Notification; 
+export default D_Notification; 

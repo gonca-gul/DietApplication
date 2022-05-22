@@ -43,12 +43,14 @@ function Clients({navigation}) {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
-                    <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.item})}>
+                    <TouchableOpacity style={styles.btnReq} onPress={()=>navigation.navigate('GetUserProfile',{item:item.item})}>
                         <Image style={styles.image}  source={require}></Image>
                         <Text style={styles.txt}>{item.item}</Text>
+                        <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.item})}>
                         <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
                         <Text style={styles.txtbtn}>Create a Diet</Text>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
+                        </TouchableOpacity>
                 </ScrollView>
             </View>
           );
@@ -69,7 +71,7 @@ image:{
     borderRadius:40,
     },
 listItem: {
-    height:100,
+  height:100,
     backgroundColor: "white",
     borderColor: "thistle",
     elevation:20,
@@ -88,9 +90,13 @@ txt:{
 txtbtn:{
     fontWeight:'bold',
     color:'mediumorchid',
-    bottom:60,
+    bottom:50,
     left:300,
     },
+    btnReq:{
+      width:250,
+      },
+
   });
 
 export default Clients; 
