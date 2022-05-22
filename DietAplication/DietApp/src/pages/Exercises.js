@@ -6,11 +6,11 @@ import AntIcon from "react-native-vector-icons/AntDesign";
 import {Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
 
 function Exercises({navigation}){
-    
+  console.disableYellowBox = true;
+  
        return(
-        
+        <ScrollView>
           <View View style={styles.cantainer}>
-            <ScrollView>
             <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('Butt_Kicks')}>
               <Image
                 source={require('../image/exercises/butt-kicks.png')}
@@ -59,13 +59,14 @@ function Exercises({navigation}){
                 style={ {height:85, width:85}}/>
               <Text style={styles.btnTxt}>Cobra Stretch</Text>
             </TouchableOpacity>
-            </ScrollView>
           </View>
-          
+          </ScrollView>    
        )
    }
 const styles = StyleSheet.create({
   cantainer: {
+    flex:1,
+    height:700,
     backgroundColor: 'white',
   },
   btn: {
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 15,
     top:20,
-    left:25,
+    left:30,
     flexDirection:'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     height: 135,
     padding: 10,
     marginTop: 15,
-    left:195,
+    left:210,
     flexDirection:'column',
     justifyContent: 'center',
     alignItems: 'center',
