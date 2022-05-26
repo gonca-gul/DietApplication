@@ -3,11 +3,17 @@
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
  import type {Node} from 'react';
  import AntIcon from "react-native-vector-icons/AntDesign";
- import {Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
+ import {Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, RefreshControl} from 'react-native';
  import SearchBar from 'react-native-search-bar';
  import Icon from 'react-native-ionicons'
  import { SliderBox } from "react-native-image-slider-box";
  import ProgressCircle from 'react-native-progress-circle';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import axios from 'axios';
+
+ const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
  function U_HomePage({navigation}){
   const images = [
@@ -17,10 +23,35 @@
     require('../image/sliders/slide4.jpg'),
     require('../image/sliders/slide5.jpg'),
   ];
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  React.useEffect(() => {
+    messages();
+    
+   });
+  const [number, setNumber] = React.useState( );
+  const messages = async () => {
+    const data = await AsyncStorage.getItem('token');
+    await axios
+    .get('http://10.0.2.2:5000/api/questions/NumberOfAnswer',{
+      headers: {Authorization : 'Bearer '  +  data,
+      },
+    })
+    .then(function (response) {
+      setNumber(response.data);
+      console.log(response.data);
+    })
+  };
      return(
-      <ScrollView>
+      <ScrollView refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}/>}>
         <View View style={styles.cantainer}>
-         
         <SearchBar
           placeholder="Find Your Dietitian"
           width={360}
@@ -69,7 +100,7 @@
           <Image
           source={require('../image/message.png')}
           style={ {height:65, width:65,  borderRadius:70/2, marginTop:10}}/>
-            <Text style={styles.btnTxt}>MESSAGES</Text>
+            <Text style={styles.btnTxt}>MESSAGES <Text style={styles.notifBx}> ({number}) </Text></Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn2}  onPress={()=>navigation.navigate('Settings')}>
             <Image
@@ -128,6 +159,15 @@
       fontWeight: 'bold',
       fontSize: 18,
     },
+    notifBx:{
+      alignSelf:"flex-end",
+      fontFamily: 'sans-serif-condensed',
+      //bottom:10,
+      //bottom:5,
+      fontSize:18,
+      fontWeight:"bold",
+      color:"red",
+      },
     });
 
  export default U_HomePage;

@@ -95,7 +95,8 @@ function U_Profile({navigation}) {
     .then(function (response) {
       setWeights(response.data.weights);
       console.log(weights);
-      setMonths(response.data.months);   
+      setMonths(response.data.months); 
+      console.log(months);  
     })
     
     .catch(function (error) {
@@ -137,7 +138,6 @@ const data = {
         await axios.post('http://10.0.2.2:5000/api/weights', {
          // weight: [0],
           weight: weight,
-          date:"2022-01-10",
           },{
           headers: {Authorization : 'Bearer '  +  data,
           },
@@ -150,6 +150,7 @@ const data = {
       .then(function (response) {
       setWeights(response.data.weights);
       setMonths(response.data.months);
+      console.log(months);
     })
   }
     return (

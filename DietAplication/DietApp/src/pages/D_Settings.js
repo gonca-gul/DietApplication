@@ -11,23 +11,24 @@ import axios from 'axios';
 
 
 
-function Settings({navigation}) {
-  const Logout = async () => {
-    const data = await AsyncStorage.getItem('token');
-    await axios.get('http://10.0.2.2:5000/api/users/logout',{
-      headers: {Authorization : 'Bearer '  +  data,
-       },
-      })
-    .then(async response => {
-      await AsyncStorage.setItem('token' , (response.data.token));
-      console.log(data) 
-      console.log(response.data);
-      navigation.navigate("UserLogin"); 
-      ;})
-      .catch ((error) => {
-      });
-};
 
+function D_Settings({navigation}) {
+
+    const Logout = async () => {
+        const data = await AsyncStorage.getItem('token');
+        await axios.get('http://10.0.2.2:5000/api/dietitians/logout',{
+          headers: {Authorization : 'Bearer '  +  data,
+           },
+          })
+        .then(async response => {
+          await AsyncStorage.setItem('token' , (response.data.token));
+          console.log(data) 
+          console.log(response.data);
+          navigation.navigate("Login"); 
+          ;})
+          .catch ((error) => {
+          });
+    };
     return (
       <View View style={styles.cantainer}>
           <ScrollView>
@@ -76,4 +77,4 @@ btn: {
     fontSize:20,
   },
 });
-export default Settings; 
+export default D_Settings; 

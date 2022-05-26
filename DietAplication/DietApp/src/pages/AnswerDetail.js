@@ -21,7 +21,18 @@ function AnswerDetail({navigation,route}) {
 
     React.useEffect(() => {
         getDetail();
+        readAnswer();
        });
+       const readAnswer = async () => {
+        const data = await AsyncStorage.getItem('token');
+        await axios
+        .get('http://10.0.2.2:5000/api/questions/readAnswer/'+answerdetail,{
+          headers: {Authorization : 'Bearer '  +  data,
+          },
+        })
+        .then(function (response) {
+        })
+      };
        const getDetail = async (item) => {
         const data = await AsyncStorage.getItem('token');
         await axios

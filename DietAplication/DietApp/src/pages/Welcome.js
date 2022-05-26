@@ -5,7 +5,7 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {View, Image, StyleSheet,TouchableOpacity,Text,TextInput,Alert,StatusBar, ScrollView } from 'react-native';
  
- function Welcome({ navigation }) {
+ function Welcome({navigation}) {
   return (
     <ScrollView>
     <View style={styles.container}>

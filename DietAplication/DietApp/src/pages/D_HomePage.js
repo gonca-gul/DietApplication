@@ -2,13 +2,45 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView, TouchableHighlight  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView, RefreshControl  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import SearchBar from 'react-native-search-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 function D_HomePage({navigation}) {
+  console.disableYellowBox = true;
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  React.useEffect(() => {
+    messages();
+   });
+  const [number, setNumber] = React.useState( );
+  const messages = async () => {
+    const data = await AsyncStorage.getItem('token');
+    await axios
+    .get('http://10.0.2.2:5000/api/questions/NumberOfQuestion',{
+      headers: {Authorization : 'Bearer '  +  data,
+      },
+    })
+    .then(function (response) {
+      setNumber(response.data);
+      console.log(response.data);
+    })
+  };
   return (
-    <ScrollView>
+    <ScrollView  refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}/>}>
       <View View style={styles.cantainer}>
         <Image style={styles.image} blurRadius={2} source={require('../../src/image/food.jpg')} />
           <SearchBar
@@ -25,13 +57,13 @@ function D_HomePage({navigation}) {
             <Image style={ {height:85, width:75,  borderRadius:70/2}} source={require('../../src/image/list.jpg')} />
             <Text style={styles.btnTxt}> My Clients</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn3}  onPress={()=>navigation.navigate('Settings')}>
+          <TouchableOpacity style={styles.btn3}  onPress={()=>navigation.navigate('D_Settings')}>
             <Image style={ {height:85, width:75,  borderRadius:70/2}} source={require('../../src/image/settings.jpg')} />
             <Text style={styles.btnTxt}>Settings</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn4}  onPress={()=>navigation.navigate('D_Messages')}>
-            <Image style={ {height:70, width:70,  borderRadius:70/2, marginTop:10, marginBottom:10}} source={require('../../src/image/message.png')} />
-            <Text style={styles.btnTxt}>Messages</Text>
+            <Image style={ {height:70, width:70,  borderRadius:70/2,marginBottom:5}} source={require('../../src/image/message.png')} />
+            <Text style={styles.btnTxt}>Messages <Text style={styles.notifBx}> ({number}) </Text></Text>
           </TouchableOpacity>
         </View>
     </ScrollView>
@@ -122,6 +154,15 @@ btnTxt: {
   color: 'plum',
   fontWeight: 'bold',
   fontSize: 17,
+},
+notifBx:{
+alignSelf:"flex-end",
+fontFamily: 'sans-serif-condensed',
+//bottom:10,
+//bottom:5,
+fontSize:18,
+fontWeight:"bold",
+color:"purple",
 },
 });
 

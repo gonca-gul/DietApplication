@@ -47,6 +47,8 @@ import MyDiet from './src/pages/MyDiet';
 import D_Messages from './src/pages/D_Messages';
 import Question from './src/pages/Questions';
 import AnswerDetail from './src/pages/AnswerDetail';
+import D_Settings from './src/pages/D_Settings';
+
 
 
 
@@ -201,6 +203,17 @@ const TabNavigator = () => {
         },
         }} />
         <Stack.Screen name="Settings" component={Settings} 
+         options={{ title: 'Settings',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'ivory',
+        },
+        headerTintColor: "#fff",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="D_Settings" component={D_Settings} 
          options={{ title: 'Settings',
          headerTitleAlign: "center",
          headerTitleStyle: {

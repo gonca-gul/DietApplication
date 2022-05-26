@@ -18,7 +18,6 @@ function Question({navigation,route}) {
   const [question, setQuestion] = React.useState();
   const [data1, setData] = React.useState([]);
 
-
     React.useEffect(() => {
         getAnswers();
         readQuestion();
@@ -33,7 +32,7 @@ function Question({navigation,route}) {
         .then(function (response) {
           setSubject(response.data.subject);
           setQuestion(response.data.question);
-          setAnswer(response.data.answer);
+          //setAnswer(response.data.answer);
           setSender(response.data.sender);
           setCreatedAd(response.data.createdAt);
         })
@@ -73,7 +72,7 @@ function Question({navigation,route}) {
           <Text style={styles.txt}>Date: {createdAt}</Text>
           <TextInput style={styles.answer} placeholder="Your Answer" multiline={true}
             value={answer}
-            onChangeText={answer=> setAnswer(answer)}  />
+            onChangeText={answer=> setAnswer(answer)}></TextInput>
             <TouchableOpacity style={styles.askBtn} onPress={sendQuestion}>
             <Text  style={styles.buttonTxt}>Send Answer</Text>
           </TouchableOpacity>
