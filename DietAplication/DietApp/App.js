@@ -48,6 +48,8 @@ import D_Messages from './src/pages/D_Messages';
 import Question from './src/pages/Questions';
 import AnswerDetail from './src/pages/AnswerDetail';
 import D_Settings from './src/pages/D_Settings';
+import D_ChangePass from './src/pages/D_ChangePass';
+import U_ChangePass from './src/pages/U_ChangePass';
 
 
 
@@ -180,6 +182,30 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="Clients" component={Clients} 
          options={{ title: 'My Client List',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'white',
+          fontSize:22,
+        },
+        headerTintColor: "linen",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+        <Stack.Screen name="D_ChangePass" component={D_ChangePass} 
+         options={{ title: 'Change Your Password',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'white',
+          fontSize:22,
+        },
+        headerTintColor: "linen",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="U_ChangePass" component={U_ChangePass} 
+         options={{ title: 'Change Password',
          headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'white',

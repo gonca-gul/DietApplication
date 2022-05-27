@@ -31,7 +31,7 @@ function Settings({navigation}) {
     return (
       <View View style={styles.cantainer}>
           <ScrollView>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('ChangePassword' )}>
+          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('U_ChangePass' )}>
           <FontAwesome  name="lock" color="green"  size={33} />
             <Text style={styles.btnTxt}>Change Password</Text>
           </TouchableOpacity>
