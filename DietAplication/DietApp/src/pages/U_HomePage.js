@@ -16,6 +16,7 @@
 }
 
  function U_HomePage({navigation}){
+  console.disableYellowBox = true;
   const images = [
     require('../image/sliders/slide1.jpg'),
     require('../image/sliders/slide2.jpg'),
@@ -43,9 +44,10 @@
     })
     .then(function (response) {
       setNumber(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     })
   };
+  
      return(
       <ScrollView refreshControl={
         <RefreshControl

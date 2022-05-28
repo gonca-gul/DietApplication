@@ -21,7 +21,7 @@ function Notification(){
            },
           })
         .then(function (response) {
-          setData(response.data.allNotifications);
+          setData(response.data);
         })
           .catch(function (error) {
           alert(error);
@@ -34,7 +34,7 @@ function Notification(){
                 <FlatList
                 style={{marginTop:20, marginBottom:20}}
                 data={data1}
-                keyExtractor={(item) => item}
+                keyExtractor={(item) => {item}}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>

@@ -22,7 +22,7 @@ function D_Notification(navigation){
            },
           })
         .then(function (response) {
-          setData(response.data.allNotifications);
+          setData(response.data);
         })
           .catch(function (error) {
           alert(error);
@@ -36,7 +36,7 @@ function D_Notification(navigation){
               <FlatList
                 style={{marginTop:20, marginBottom:20}}
                 data={data1}
-                keyExtractor={( item) => item._id}
+                keyExtractor={( item) => {item}}
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>

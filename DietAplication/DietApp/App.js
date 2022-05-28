@@ -50,14 +50,15 @@ import AnswerDetail from './src/pages/AnswerDetail';
 import D_Settings from './src/pages/D_Settings';
 import D_ChangePass from './src/pages/D_ChangePass';
 import U_ChangePass from './src/pages/U_ChangePass';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 
 
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
+  
    return(
     <NotificationProvider>
   <Tab.Navigator screenOptions={({ route }) => ({
@@ -93,7 +94,10 @@ const TabNavigator = () => {
  }
 
  const TabUser = createBottomTabNavigator();
+
  const TabUserNavigator = () => {
+    //const [notif, setNotif] = React.useState( );
+
   return(
  <Tab.Navigator screenOptions={({ route }) => ({
      tabBarActiveTintColor: "black",
@@ -113,7 +117,7 @@ const TabNavigator = () => {
    tabBarIcon: () => (<AntIcon name='home' size={24} color='purple' />) }} component={U_HomePage}/>
    <Tab.Screen name="PROFİLE"  options={{ headerTitleAlign: "center",
    tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={U_Profile}/>
-   <Tab.Screen name="NOTIFICATIONS"  options={{  
+   <Tab.Screen name="NOTIFICATIONS"  options={{  /*tabBarBadge: notif,*/
    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
    </Tab.Navigator>
   );
@@ -121,6 +125,24 @@ const TabNavigator = () => {
 
  const Stack = createNativeStackNavigator();
  function App() {
+   /*
+      const [notif, setNotif] = React.useState( );
+
+    React.useEffect(() => {
+        Notification();
+       });
+      const Notification = async () => {
+        const data = await AsyncStorage.getItem('token');
+        await axios
+        .get('http://10.0.2.2:5000/api/notifications/userNotification',{
+          headers: {Authorization : 'Bearer '  +  data,
+          },
+        })
+        .then(function (response) {
+          setNotif(response.data);
+          console.log(notif);
+        })
+      };*/
    return (
     <NotificationProvider>
      <NavigationContainer>

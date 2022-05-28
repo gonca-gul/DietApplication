@@ -13,15 +13,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function Dietitians({navigation}) {
-    const [username, setUsername] = React.useState();
+  
+  const [search, setSearch] = React.useState( );
+  const [data1, setData1] = React.useState([]);
+  const [data2, setData2] = React.useState([]);
+
     React.useEffect(() => {
         dietitians();
-       });
+       },[]);
     const dietitians = () => {
         axios
         .get('http://10.0.2.2:5000/api/dietitians')
         .then(function (response) {
-          setUsername(response.data);
+          setData1(response.data);
+          setData2(response.data)
         })
           .catch(function (error) {
           alert(error);
@@ -30,17 +35,17 @@ function Dietitians({navigation}) {
         })
     };
 
-    const reqDiet = async (item) => {
+  const reqDiet = async (item) => {
       const data = await AsyncStorage.getItem('token');
       await axios
-      .patch('http://10.0.2.2:5000/api/dietLists/requestDietList/'+item.item,{},{
+      .patch('http://10.0.2.2:5000/api/dietLists/requestDietList/'+item.username,{},{
         headers: {Authorization : 'Bearer '  +  data,
         },
       })
       .then(async response => {
-        console.log(data);
-        console.log(response.data);
-        console.log(item.item);
+        //console.log(data);
+        //console.log(response.data);
+        //console.log(item.username);
       })
         .catch(function (error) { 
         alert(error);
@@ -48,27 +53,56 @@ function Dietitians({navigation}) {
         .then(function () {
       })
   };
+  const searchFilterFunction = (text) => {
+    if (text) {
+      const newData = data1.filter(
+        function (item) {
+          const itemData = item.username
+          
+            ? item.username.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+      });
+      setData1(newData);
+      setSearch(text);
+    } else {
+      setData1(data2);
+      setSearch(text);
+    }
+  }
+  const ItemSeparatorView = () => {
+    return (
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
+        <TextInput style={styles.SearchInput} placeholder='Search..'
+          value={search}
+          onChangeText={text=> searchFilterFunction(text)}/>
           <FlatList
             style={{marginTop:10}}
-            data={username}
-            keyExtractor={item =>{ item}}
-            renderItem={(item) => {
+            data={data1}
+            ItemSeparatorComponent={ItemSeparatorView}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => {
             return (
             <View style={styles.listItem}>
-                <ScrollView>
-                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{items:item.item})}>
+                    <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{items:item.username})}>
                         <Image style={styles.image}  source={require}></Image>
-                        <Text style={styles.txt}>{item.item}</Text>
+                        <Text style={styles.txt}>{item.username}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                        style={styles.btnReq}
-                        onPress={() => reqDiet(item)}>
+                        <TouchableOpacity style={styles.btnReq} onPress={() => reqDiet(item)}>
                 <FontAwesome5 name="plus" size={28} color="darkgray" style={styles.icon}  />  
               </TouchableOpacity>
-                </ScrollView>
             </View>
           );
         }}/>
@@ -77,7 +111,11 @@ function Dietitians({navigation}) {
 }
 
 const styles = StyleSheet.create({
-
+SearchInput:{
+  padding:10,
+  backgroundColor:"white",
+  fontSize:17,
+},
 image:{
     height:70,
     width:70,
