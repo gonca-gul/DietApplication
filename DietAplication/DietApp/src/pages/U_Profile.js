@@ -35,6 +35,8 @@ function U_Profile({navigation}) {
   const [illness, setIllness] = React.useState('');
   const [height, setHeight] = React.useState( );
   const [username, setUsername] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [surname, setSurname] = React.useState('');
   const [medicine, setMedicine] = React.useState('');
 
  
@@ -55,6 +57,8 @@ function U_Profile({navigation}) {
           })
         .then(function (response) {
           setUsername(response.data.username);
+          setName(response.data.name);
+          setSurname(response.data.name);
           setWeight(JSON.stringify(response.data.weight));
           setHeight(JSON.stringify(response.data.height));
           setMedicine(response.data.medicine);
@@ -114,6 +118,8 @@ const data = {
       console.log(data)
         await axios.patch('http://10.0.2.2:5000/api/users/me', {
           gender: gender,
+          name: name,
+          surname: surname,
           birthday: birthday ,
           weight: weight,
           height: height,
@@ -163,8 +169,10 @@ const data = {
                 borderColor: 'plum',}}
                 source={avatar}/>
             </View>
-        <Text style={styles.userNameText}>{username}</Text>
         <View style={styles.topView}>
+        <TextInput  style={{top:10, marginLeft:120, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} placeholder="Full Name "
+              value={name}
+              onChangeText={name => setName(name)} />
             <Icon name="weight" size={24} color="orange"  style={styles.rightIcons} />
             <TextInput  style={styles.TxtRight}
               value={weight}
@@ -181,8 +189,10 @@ const data = {
               value={birthday}
               onChangeText={birthday => setBirthday(birthday)}></TextInput>
             <Text style={styles.topTxt1}>Birthday</Text>
-            <MaterialComIcon name="gender-male" size={25} color="orange"  style={styles.leftIcons}/>
-            <MaterialComIcon name="gender-female" size={25} color="orange"  style={styles.leftIcons}/>
+            <TextInput  style={{bottom:375, marginLeft:170, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} 
+              value={surname}
+              onChangeText={surname => setSurname(surname)} />
+            <MaterialComIcon name="gender-male-female" size={30} color="orange"  style={styles.leftIcons}/>
             <TextInput style={styles.TxtLeft}
               value={gender}
               onChangeText={gender => setGender(gender)} />
@@ -191,12 +201,12 @@ const data = {
             <TextInput style={styles.TxtLeft} 
               value={illness}
               onChangeText={illness => setIllness(illness)} />
-            <Text style={styles.topTxt2}>Any Illness</Text>
+            <Text style={styles.topTxt2}>Illness</Text>
             <MaterialComIcon name="pill" size={25} color="orange"  style={styles.leftIcons}/>
             <TextInput style={styles.TxtLeft} 
               value={medicine}
               onChangeText={medicine => setMedicine(medicine)} />
-            <Text style={styles.topTxt2}>Any Medicine</Text>
+            <Text style={styles.topTxt2}>Medicine</Text>
         </View>
             <TouchableOpacity style={styles.btnSnd}  onPress={handlePress}>
                 <Text style={styles.btnTxt}>SAVE</Text>
@@ -237,6 +247,12 @@ cantainer: {
 backImg:{
     height:180,
   },
+nameinput:{
+  borderBottomWidth:1,
+  borderBottomColor:"thistle",
+  width:250,
+  alignSelf:"center",
+},
 icon1:{
     left: 58,
     marginTop:18,
@@ -276,7 +292,7 @@ userNameText:{
 topView: {
     bottom:110,  
     backgroundColor: 'white',
-    height: 360,
+    height: 440,
     alignSelf:"center",
     width:340,
     borderRadius: 20,
@@ -289,7 +305,7 @@ rightIcons:{
   },
 leftIcons:{
     left:210,
-    bottom:300,
+    bottom:330,
   },
 TxtRight: {
     color: 'purple',
@@ -307,17 +323,17 @@ topTxt1: {
 TxtLeft: {
     color: 'purple',
     marginTop: 10,
-    bottom:360,
+    bottom:400,
     fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 240,
   },
 topTxt2: {
     marginTop: 5,
-    bottom:360,
+    bottom:400,
     fontSize: 17,
     fontWeight: 'bold',
-    marginLeft: 220,
+    marginLeft: 240,
   },
 centerView:{
     bottom:50,

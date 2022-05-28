@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 function Clients({navigation}) {
-    
+    const [data1, setData1] = React.useState([]);
     const [username, setUsername] = React.useState();
     React.useEffect(() => {
         Clients();
@@ -23,7 +23,7 @@ function Clients({navigation}) {
             },
         })
         .then(function (response) {
-          setUsername(response.data);
+          setData1(response.data);
         })
           .catch(function (error) {
           alert(error);
@@ -48,16 +48,16 @@ function Clients({navigation}) {
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
           <FlatList
             style={{marginTop:10}}
-            data={username}
+            data={data1}
             keyExtractor={item => {item}}
-            renderItem={(item) => {
+            renderItem={({item}) => {
             return (
             <View style={styles.listItem}>
                 <ScrollView>
-                    <TouchableOpacity style={styles.btnReq} onPress={()=>navigation.navigate('GetUserProfile',{item:item.item})}>
+                    <TouchableOpacity style={styles.btnReq} onPress={()=>navigation.navigate('GetUserProfile',{item:item.username})}>
                         <Image style={styles.image}  source={images(item.gender)}></Image>
-                        <Text style={styles.txt}>{item.item}</Text>
-                        <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.item})}>
+                        <Text style={styles.txt}>{item.name} {item.surname}</Text>
+                        <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.username})}>
                         <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
                         <Text style={styles.txtbtn}>Create a Diet</Text>
                         </TouchableOpacity>
@@ -82,7 +82,7 @@ image:{
     borderRadius:30,
     },
 listItem: {
-  height:100,
+    height:100,
     backgroundColor: "white",
     borderColor: "thistle",
     elevation:20,
@@ -94,7 +94,7 @@ icon:{
     },
 txt:{
     bottom:35,
-    left:100,
+    left:110,
     fontSize:20,
     color:'darkslategrey',
     },

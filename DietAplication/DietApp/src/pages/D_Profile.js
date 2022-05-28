@@ -82,17 +82,13 @@ function D_Profile(){
         <ScrollView>
         <Image style={styles.backImg} source={require('../../src/image/ProfileBack.jpg')} />
           <View  style={styles.image}>
-          
-
           <Image 
             style={{
               marginBottom:20,
-              width:170,
-              height: 170,
+              width:180,
+              height: 180,
               borderRadius: 170/2,
-              borderWidth:1,
-              borderColor: 'plum',}}
-            
+              }}
             source={avatar}/>
         </View>
         <View style={styles.topView}>
@@ -163,8 +159,6 @@ image: {
   width:170,
   height: 170,
   borderRadius: 170/2,
-  borderWidth:1,
-  borderColor: 'plum',
 },
 buttonContainer:{
   height:55,
