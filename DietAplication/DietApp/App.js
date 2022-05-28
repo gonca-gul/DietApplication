@@ -194,6 +194,7 @@ const TabNavigator = () => {
         }} />
         <Stack.Screen name="FoodCalori" component={FoodCalori} 
          options={{ title: 'Find Food Calori',
+         headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'ivory',
         },

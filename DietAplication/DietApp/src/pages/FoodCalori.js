@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import type {Node} from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar, VirtualizedList  } from 'react-native';
+import {Button, View, Text,StyleSheet,TextInput, Image, ScrollView,FlatList, StatusBar  } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { useNotification } from 'react-native-internal-notification';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -67,11 +65,13 @@ function FoodCalori({navigation}) {
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
+        <View style={{height:70,backgroundColor:"thistle"}}>
         <TextInput style={styles.SearchInput} placeholder='Search..'
         value={search}
         onChangeText={text=> searchFilterFunction(text)}/>
+        <FontAwesome name="search" size={30} color="darkgray" style={{bottom:40,marginLeft:340}}  />  
+          </View>
           <FlatList
-            style={{marginTop:10}}
             data={data1}
             ItemSeparatorComponent={ItemSeparatorView}
             keyExtractor={(item, index) => index.toString()}
@@ -80,6 +80,8 @@ function FoodCalori({navigation}) {
             <View style={styles.listItem}>
                 <Image style={styles.image}  source={require}></Image>
                 <Text style={styles.txt}>{item.name}</Text>
+                <Text style={styles.quantity}>({item.quantity})</Text>
+                <Text style={styles.Cal}>{item.calorie} kcal</Text>
             </View>
           );
         }}/>
@@ -88,19 +90,25 @@ function FoodCalori({navigation}) {
 }
 
 const styles = StyleSheet.create({
-SearchInput:{
-  padding:10,
-  backgroundColor:"white",
-  fontSize:17,
-},
+  SearchInput:{
+    marginTop:10,
+    padding:12,
+    width:380,
+    alignSelf:"center",
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius:20,
+    borderColor:"white",
+    fontSize:17,
+  },
 image:{
     height:70,
     width:70,
-    left:20,
+    left:10,
     top:20,
     borderWidth:2,
     borderColor:'thistle',
-    borderRadius:40,
+    borderRadius:20,
     },
 listItem: {
     height:100,
@@ -114,24 +122,23 @@ icon:{
     left:330,
     },
 txt:{
-    bottom:35,
+    bottom:50,
     left:100,
     fontSize:20,
     color:'darkslategrey',
     },
-txtbtn:{
-    fontWeight:'bold',
-    color:'mediumorchid',
-    bottom:60,
-    left:290,
-    },
-btnReq:{
-    width:100,
-    height:100,
-    },
-txtReq: {
-  color:'red',
+Cal:{
+  bottom:95,
+  marginLeft:310,
+  fontSize:19,
+},
+quantity:{
+  bottom:45,
+  left:105,
+  fontSize:17,
 }
+
+
   });
 
 export default FoodCalori; 

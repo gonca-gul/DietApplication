@@ -4,10 +4,8 @@
  import type {Node} from 'react';
  import AntIcon from "react-native-vector-icons/AntDesign";
  import {Button, View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, RefreshControl} from 'react-native';
- import SearchBar from 'react-native-search-bar';
  import Icon from 'react-native-ionicons'
  import { SliderBox } from "react-native-image-slider-box";
- import ProgressCircle from 'react-native-progress-circle';
  import AsyncStorage from '@react-native-async-storage/async-storage';
  import axios from 'axios';
 
@@ -54,18 +52,11 @@
           refreshing={refreshing}
           onRefresh={onRefresh}/>}>
         <View View style={styles.cantainer}>
-        <SearchBar
-          placeholder="Find Your Dietitian"
-          width={360}
-          marginTop={15}
-          left={20}
-          height={50}
-          marginBottom={15}/>
         <SliderBox images={images}
           sliderBoxHeight={200}
           autoplay
           circleLoop
-          ImageComponentStyle={{borderRadius: 15, width: '90%', marginTop: 5}}
+          ImageComponentStyle={{borderRadius: 15, width: '90%', marginTop: 30}}
           imageLoadingColor="#2196F3"
           dotColor="#FFEE58"
           inactiveDotColor="#90A4AE"
@@ -118,7 +109,7 @@
  const styles = StyleSheet.create({
     cantainer: {
       flex:1,
-      height:700,
+      height:670,
       backgroundColor: 'white',
     },
     btn: {
@@ -168,7 +159,7 @@
       //bottom:5,
       fontSize:18,
       fontWeight:"bold",
-      color:"red",
+      color:"darkgreen",
       },
     });
 

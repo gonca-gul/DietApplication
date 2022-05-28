@@ -4,16 +4,12 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView,FlatList, StatusBar, VirtualizedList  } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { useNotification } from 'react-native-internal-notification';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-
-
 function Dietitians({navigation}) {
-  
   const [search, setSearch] = React.useState( );
   const [data1, setData1] = React.useState([]);
   const [data2, setData2] = React.useState([]);
@@ -43,9 +39,6 @@ function Dietitians({navigation}) {
         },
       })
       .then(async response => {
-        //console.log(data);
-        //console.log(response.data);
-        //console.log(item.username);
       })
         .catch(function (error) { 
         alert(error);
@@ -75,7 +68,7 @@ function Dietitians({navigation}) {
     return (
       <View
         style={{
-          height: 0.5,
+          //height: 0.5,
           width: '100%',
           backgroundColor: '#C8C8C8',
         }}
@@ -84,12 +77,14 @@ function Dietitians({navigation}) {
   };
     return (
       <View View style={styles.cantainer}>
-        <StatusBar barStyle="light-content" backgroundColor="limegreen" />
+        <StatusBar barStyle="light-content" backgroundColor="green" />
+        <View style={{height:70,backgroundColor:"thistle"}}>
         <TextInput style={styles.SearchInput} placeholder='Search..'
           value={search}
           onChangeText={text=> searchFilterFunction(text)}/>
+          <FontAwesome name="search" size={30} color="darkgray" style={{bottom:40,marginLeft:340}}  />  
+          </View>
           <FlatList
-            style={{marginTop:10}}
             data={data1}
             ItemSeparatorComponent={ItemSeparatorView}
             keyExtractor={(item, index) => index.toString()}
@@ -112,49 +107,55 @@ function Dietitians({navigation}) {
 
 const styles = StyleSheet.create({
 SearchInput:{
-  padding:10,
-  backgroundColor:"white",
+  marginTop:10,
+  padding:12,
+  width:380,
+  alignSelf:"center",
+  backgroundColor: 'white',
+  borderWidth: 1,
+  borderRadius:20,
+  borderColor:"white",
   fontSize:17,
 },
 image:{
-    height:70,
-    width:70,
-    left:20,
-    top:20,
-    borderWidth:2,
-    borderColor:'thistle',
-    borderRadius:40,
-    },
+  height:70,
+  width:70,
+  left:10,
+  top:10,
+  borderWidth:2,
+  borderColor:'thistle',
+  borderRadius:30,
+},
 listItem: {
-    height:100,
-    backgroundColor: "white",
-    borderColor: "thistle",
-    elevation:20,
-    shadowColor:"purple" 
-    },
+  height:90,
+  backgroundColor: "white",
+  borderColor: "thistle",
+  elevation:20,
+  shadowColor:"purple" 
+},
 icon:{
-    bottom:60,
-    left:330,
-    },
+  bottom:70,
+  left:340,
+},
 txt:{
-    bottom:35,
-    left:100,
-    fontSize:20,
-    color:'darkslategrey',
-    },
+  bottom:40,
+  left:100,
+  fontSize:20,
+  color:'darkslategrey',
+},
 txtbtn:{
-    fontWeight:'bold',
-    color:'mediumorchid',
-    bottom:60,
-    left:290,
-    },
+  fontWeight:'bold',
+  color:'mediumorchid',
+  bottom:60,
+  left:290,
+},
 btnReq:{
-    width:100,
-    height:100,
-    },
+  width:100,
+  height:100,
+},
 txtReq: {
   color:'red',
 }
-  });
+});
 
 export default Dietitians; 
