@@ -24,7 +24,6 @@ import {
 
 
 const screenWidth = Dimensions.get("window").width;
-const includeExtra = true;
 
 function U_Profile({navigation}) {
   const [gender, setGender] = React.useState();
@@ -32,24 +31,13 @@ function U_Profile({navigation}) {
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
-  const [weights, setWeights] = React.useState(new Array(1,2));
+  const [weights, setWeights] = React.useState(new Array(0,0));
   const [illness, setIllness] = React.useState('');
   const [height, setHeight] = React.useState( );
   const [username, setUsername] = React.useState('');
   const [medicine, setMedicine] = React.useState('');
-  const [response, setResponse] = React.useState(null);
 
-    const onButtonPress = React.useCallback((type, options) => {
-      if (type === 'capture') {
-        ImagePicker.launchCamera(options, setResponse); 
-      
-      } else {
-        ImagePicker.launchImageLibrary(options, setResponse);
-      }
-    }, []);
-    
-  
-
+ 
     React.useEffect(() => {
       getInfo();
      }, []);
@@ -73,7 +61,7 @@ function U_Profile({navigation}) {
           setGender(response.data.gender);
           setBirthday(response.data.birthday);
           setIllness(response.data.illness);
-          console.log(response);
+          //console.log(response);
         })
         
         .catch(function (error) {
@@ -153,38 +141,28 @@ const data = {
       console.log(months);
     })
   }
+  let avatar;
+  if (gender==='female') {
+    avatar=require('../../src/image/female.png');
+   } else if(gender==='male') {
+     avatar=require('../../src/image/male.png');
+     
+   }else{
+     avatar=null;
+   }
     return (
       <View View style={styles.cantainer}>
         <ScrollView>
           <Image style={styles.backImg} source={require('../../src/image/ProfileBack.jpg')} />
             <View  style={styles.image}>
-            {response?.assets &&
-            response?.assets.map(({uri}) => (
             <Image 
-              key={''}
               style={{
-                marginBottom:20,
                 width:150,
-                height: 150,
+                height: 170,
                 borderRadius: 150/2,
-                borderWidth:1,
                 borderColor: 'plum',}}
-              source={{uri: uri}}/>))}
+                source={avatar}/>
             </View>
-          <View style={styles.buttonContainer}>
-            <AntIcon name='camera' size={25} color='purple' style={styles.icon1} />
-            <AntIcon name='upload' size={24} color='purple' style={styles.icon2} />
-              {actions.map(({title, type, options}) => {
-            return (
-              <Button
-                color='transparent'
-                title='.......'
-                key={title}
-                onPress={() => onButtonPress(type, options) }>
-              </Button>
-            );
-          })}
-        </View>
         <Text style={styles.userNameText}>{username}</Text>
         <View style={styles.topView}>
             <Icon name="weight" size={24} color="orange"  style={styles.rightIcons} />
@@ -273,12 +251,10 @@ icon2:{
 image: {
     alignSelf:"center",
     bottom:100,
-    marginBottom:20,
+    marginBottom:30,
     width:150,
     height: 150,
     borderRadius: 150/2,
-    borderWidth:1,
-    borderColor: 'plum',
   },
 buttonContainer:{
     height:55,
@@ -290,11 +266,12 @@ buttonContainer:{
     marginVertical: 8,
   },
 userNameText:{
-    bottom:150,
+    bottom:120,
     textAlign:'center',
     fontSize:25,
     fontWeight:'bold',
     color:'black',
+    marginBottom:20,
   },
 topView: {
     bottom:110,  
@@ -362,34 +339,5 @@ centerView:{
     fontSize: 18,
   },
 });
-interface Action {
-    title: string;
-    type: 'capture' | 'library';
-    options: ImagePicker.CameraOptions | ImagePicker.ImageLibraryOptions;
-  }
-  const actions: Action[] = [
-    {
-    title: 'Take Image',
-    type: 'capture',
-    options: {
-      saveToPhotos: true,
-      mediaType: 'photo',
-      includeBase64: false,
-      includeExtra,
-      },
-    },
-    {
-    title: 'Select Image',
-    type: 'library',
-    options: {
-      maxHeight: 200,
-      maxWidth: 200,
-      selectionLimit: 0,
-      mediaType: 'photo',
-      includeBase64: false,
-      includeExtra,
-    },
-  },
-  ];
 
 export default U_Profile; 

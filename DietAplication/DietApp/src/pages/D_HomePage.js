@@ -4,7 +4,6 @@ import type {Node} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, Image, ScrollView, RefreshControl  } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
-import SearchBar from 'react-native-search-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
@@ -43,12 +42,6 @@ function D_HomePage({navigation}) {
         onRefresh={onRefresh}/>}>
       <View View style={styles.cantainer}>
         <Image style={styles.image} blurRadius={2} source={require('../../src/image/food.jpg')} />
-          <SearchBar
-          placeholder="Search Client Profile"
-          width={340}
-          marginTop={35}
-          left={20}
-          height={50}/>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('FoodCalori')}>
             <Image style={ {height:95, width:75,  borderRadius:70/2}} source={require('../../src/image/foodcalori.jpg')} />
             <Text style={styles.btnTxt}>Food Calori</Text>
@@ -75,7 +68,7 @@ const styles = StyleSheet.create({
 cantainer: {
   flex:1,
   backgroundColor: 'white',
-  height:750,
+  height:670,
 },
 image: {
   width: '100%',

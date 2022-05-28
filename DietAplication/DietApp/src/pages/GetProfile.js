@@ -26,24 +26,35 @@ function GetProfile({navigation,route}){
   const [name, setName] = React.useState('');
   const [surname, setSurname] = React.useState('');
 
-        const getInfo= () => { 
-              axios
-            .get('http://10.0.2.2:5000/api/dietitians/getDietitian/'+items,)
-            .then(function (response) {
-                setUsername(response.data.username);
-                setName(response.data.name);
-                setSurname(response.data.surname);
-                setGender(response.data.gender);
-                setBirthday(response.data.birthday);
-                setBio(response.data.bio)
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                alert(error);
-            })
-            .then(function () {
-            });
-        }
+  const getInfo= () => { 
+      axios
+      .get('http://10.0.2.2:5000/api/dietitians/getDietitian/'+items,)
+      .then(function (response) {
+        setUsername(response.data.username);
+        setName(response.data.name);
+        setSurname(response.data.surname);
+        setGender(response.data.gender);
+        setBirthday(response.data.birthday);
+        setBio(response.data.bio)
+        //console.log(response.data);
+      })
+      .catch(function (error) {
+        alert(error);
+      })
+      .then(function () {
+      });
+    }
+  let avatar;
+  const images = (newitem) => {
+    if (newitem==='female') {
+      avatar=require('../../src/image/female.png');
+    } else if(newitem==='male') {
+      avatar=require('../../src/image/male.png'); 
+    }else{
+      avatar=null;
+    }
+    return avatar;
+    };
     return(
       <View View style={styles.cantainer} >
         <ScrollView>
@@ -60,7 +71,7 @@ function GetProfile({navigation,route}){
               height: 150,
               alignSelf:"center",
               borderRadius: 130/2,}}
-            source={require}/>
+            source={images(gender)}/>
             <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{name}  {surname}</Text>
         </View>
         <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
@@ -88,6 +99,7 @@ image: {
   width:150,
   height: 150,
   borderRadius: 130/2,
+  backgroundColor:"lightseagreen",
   borderWidth:2,
   elevation:50,
   alignSelf:"center",

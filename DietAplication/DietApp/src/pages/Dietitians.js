@@ -75,6 +75,19 @@ function Dietitians({navigation}) {
       />
     );
   };
+
+  let avatar;
+  const images = (newitem) => {
+  if (newitem==='female') {
+    avatar=require('../../src/image/female.png');
+   } else if(newitem==='male') {
+     avatar=require('../../src/image/male.png');
+     
+   }else{
+     avatar=null;
+   }
+   return avatar;
+  };
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="green" />
@@ -92,7 +105,8 @@ function Dietitians({navigation}) {
             return (
             <View style={styles.listItem}>
                     <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{items:item.username})}>
-                        <Image style={styles.image}  source={require}></Image>
+                        <Image style={styles.image}  source={images(item.gender)}></Image>
+                        
                         <Text style={styles.txt}>{item.username}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btnReq} onPress={() => reqDiet(item)}>

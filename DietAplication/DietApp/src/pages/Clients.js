@@ -31,7 +31,18 @@ function Clients({navigation}) {
           .then(function () {
         })
     };
- 
+    let avatar;
+    const images = (newitem) => {
+    if (newitem==='female') {
+      avatar=require('../../src/image/female.png');
+     } else if(newitem==='male') {
+       avatar=require('../../src/image/male.png');
+       
+     }else{
+       avatar=null;
+     }
+     return avatar;
+    };
     return (
       <View View style={styles.cantainer}>
         <StatusBar barStyle="light-content" backgroundColor="limegreen" />
@@ -44,7 +55,7 @@ function Clients({navigation}) {
             <View style={styles.listItem}>
                 <ScrollView>
                     <TouchableOpacity style={styles.btnReq} onPress={()=>navigation.navigate('GetUserProfile',{item:item.item})}>
-                        <Image style={styles.image}  source={require}></Image>
+                        <Image style={styles.image}  source={images(item.gender)}></Image>
                         <Text style={styles.txt}>{item.item}</Text>
                         <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('CreateDiet', {item:item.item})}>
                         <FontAwesome5 name="edit" size={28} color="darkgray" style={styles.icon}  />
@@ -68,7 +79,7 @@ image:{
     top:20,
     borderWidth:2,
     borderColor:'thistle',
-    borderRadius:40,
+    borderRadius:30,
     },
 listItem: {
   height:100,

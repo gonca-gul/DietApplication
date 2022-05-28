@@ -67,7 +67,7 @@ function Login({navigation}) {
           <View style={styles.endView}>
             <TouchableOpacity
               style={styles.Btn2}
-              onPress={() => navigation.navigate('password')}>
+              onPress={() => navigation.navigate('D_ForgotPass')}>
               <Text style={styles.endTxt}>Forgot Password?</Text>
             </TouchableOpacity>
           </View>

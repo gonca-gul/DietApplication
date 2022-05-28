@@ -38,27 +38,38 @@ function GetUserProfile({navigation,route}){
    const [username, setUsername] = React.useState('');
    const [medicine, setMedicine] = React.useState('');
 
-        const getInfoUser= () => { 
-              axios
-            .get('http://10.0.2.2:5000/api/users/getUser/'+item,)
-            .then(function (response) {
-                setUsername(response.data.username);
-                setWeight(JSON.stringify(response.data.weight));
-                setHeight(JSON.stringify(response.data.height));
-                setMedicine(response.data.medicine);
-                setGender(response.data.gender);
-                setBirthday(response.data.birthday);
-                setIllness(response.data.illness);
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                alert(error);
-            })
-            .then(function () {
-            });
-        }
-           return (
-            <View View style={styles.cantainer} >
+    const getInfoUser= () => { 
+          axios
+          .get('http://10.0.2.2:5000/api/users/getUser/'+item,)
+          .then(function (response) {
+            setUsername(response.data.username);
+            setWeight(JSON.stringify(response.data.weight));
+            setHeight(JSON.stringify(response.data.height));
+            setMedicine(response.data.medicine);
+            setGender(response.data.gender);
+            setBirthday(response.data.birthday);
+            setIllness(response.data.illness);
+            //console.log(response.data);
+          })
+          .catch(function (error) {
+            alert(error);
+          })
+          .then(function () {
+          });
+    }
+  let avatar;
+  const images = (newitem) => {
+    if (newitem==='female') {
+      avatar=require('../../src/image/female.png');
+    } else if(newitem==='male') {
+      avatar=require('../../src/image/male.png'); 
+    }else{
+      avatar=null;
+    }
+    return avatar;
+    };
+        return (
+          <View View style={styles.cantainer} >
             <StatusBar barStyle="light-content" backgroundColor="thistle" />
             <ScrollView>
             <LinearGradient
@@ -72,27 +83,25 @@ function GetUserProfile({navigation,route}){
                   marginBottom:20,
                   width:150,
                   height: 150,
-                  alignSelf:"center",
-                  borderRadius: 130/2,}}
-                source={require}/>
+                  alignSelf:"center",}}
+                source={images(gender)}/>
                 <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{username}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
-                <Text style={styles.txt}>Gender</Text>
-                <Text style={styles.nameInput}>{gender}</Text>
-                <Text style={styles.txt}>Birthday</Text>
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                <Text style={styles.txt}>  Gender</Text>
+                <Text style={styles.nameInput}> {gender}</Text>
+                <Text style={styles.txt}> Birthday</Text>
                 <Text style={styles.nameInput}>{birthday}</Text>
             </View>
               </View>
-              <Text style={styles.txtAbouttitle}> About </Text>
-                <Text style={styles.about}>{username}</Text>
-              <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
+              <Text style={styles.txtAbouttitle}> About  {username} </Text>
+              <View style={{flexDirection:'row',justifyContent:'space-between'}}>
               <Icon name="weight" size={24} color="purple"  style={styles.Icons} />
                 <Text style={styles.txt}>Weight: </Text>
-                <Text style={styles.about}> {weight}</Text>
+                <Text style={styles.nameInput}>{weight} kg</Text>
                 <MaterialComIcon name="human-male-height-variant" size={28} color="purple"  style={styles.Icons}/>
                 <Text style={styles.txt}>Height:</Text>
-                <Text style={styles.nameInput}> {height}</Text>
+                <Text style={styles.nameInput}>{height} cm</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
                 <Icon name="disease" size={25} color="purple"  style={styles.Icons} />
@@ -100,7 +109,7 @@ function GetUserProfile({navigation,route}){
                 <Text style={styles.nameInput}> {illness}</Text>
                 <MaterialComIcon name="pill" size={25} color="purple"  style={styles.Icons}/>
                 <Text style={styles.txt}>Medicine:</Text>
-                <Text style={styles.nameInput}> {medicine}</Text>
+                <Text style={styles.nameInput}>{medicine}</Text>
                 </View>
         </ScrollView>
     </View>
@@ -117,6 +126,7 @@ function GetUserProfile({navigation,route}){
       width:150,
       height: 150,
       borderRadius: 130/2,
+      backgroundColor:"thistle",
       borderWidth:2,
       elevation:50,
       alignSelf:"center",
@@ -141,7 +151,7 @@ function GetUserProfile({navigation,route}){
     nameInput: {
       height: 60,
       width: 90,
-      right:70,
+      right:65,
       marginTop:40,
       marginBottom: 10,
       fontSize:21,
@@ -152,6 +162,7 @@ function GetUserProfile({navigation,route}){
       fontSize:24,
       textAlign:"center",
       marginTop:20,
+      marginBottom:20,
       fontWeight:'bold',
     },
     about:{

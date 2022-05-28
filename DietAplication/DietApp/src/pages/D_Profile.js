@@ -3,13 +3,11 @@ import type {Node} from 'react';
 import { View, Text,Image, StyleSheet ,TextInput, ScrollView,Button,  TouchableOpacity, Touchable, TouchableHighlight } from 'react-native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import {Picker} from '@react-native-picker/picker';
-import * as ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {useEffect} from "react";
 import DatePicker from 'react-native-datepicker';
 
-const includeExtra = true;
 
 function D_Profile(){
 
@@ -18,20 +16,11 @@ function D_Profile(){
   const [surname, setSurname] = React.useState();
   const [birthday, setBirthday] = React.useState(new Date())
   const [open, setOpen] = React.useState(false)
-  const [response, setResponse] = React.useState(null);
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [bio, setBio] = React.useState('');
+  
 
-
-  const onButtonPress = React.useCallback((type, options) => {
-      if (type === 'capture') {
-        ImagePicker.launchCamera(options, setResponse); 
-      
-      } else {
-        ImagePicker.launchImageLibrary(options, setResponse);
-      }
-    }, []);
    
     React.useEffect(() => {
         getInfo();
@@ -53,6 +42,7 @@ function D_Profile(){
                 setBirthday(response.data.birthday);
                 setBio(response.data.bio)
                 console.log(response.data);
+                //console.log(name);
             })
             .catch(function (error) {
                 alert(error);
@@ -78,38 +68,32 @@ function D_Profile(){
             console.log(response.data);         
       });
     }
-    return(
+    let avatar;
+    if (gender==='female') {
+      avatar=require('../../src/image/female.png');
+     } else if(gender==='male') {
+       avatar=require('../../src/image/male.png');
+       
+     }else{
+       avatar=null;
+     }
+    return(  
       <View View style={styles.cantainer} >
         <ScrollView>
         <Image style={styles.backImg} source={require('../../src/image/ProfileBack.jpg')} />
           <View  style={styles.image}>
-          {response?.assets &&
-          response?.assets.map(({uri}) => (
+          
+
           <Image 
-            key={''}
             style={{
               marginBottom:20,
-              width:200,
-              height: 200,
-              borderRadius: 200/2,
+              width:170,
+              height: 170,
+              borderRadius: 170/2,
               borderWidth:1,
               borderColor: 'plum',}}
-            source={{uri: uri}}/>
-            ))}
-        </View>
-        <View style={styles.buttonContainer}>
-          <AntIcon name='camera' size={26} color='purple' style={styles.icon1} />
-          <AntIcon name='upload' size={25} color='purple' style={styles.icon2} />
-          {actions.map(({title, type, options}) => {
-            return (
-              <Button
-                color='transparent'
-                title='........'
-                key={title}
-                onPress={() => onButtonPress(type, options) }>
-              </Button>
-            );
-          })}
+            
+            source={avatar}/>
         </View>
         <View style={styles.topView}>
             <Text style={styles.txt}> Username </Text>
@@ -173,12 +157,12 @@ icon2:{
   bottom:115,
 },
 image: {
-  left:100,
+  alignSelf:"center",
   bottom:100,
   marginBottom:20,
-  width:200,
-  height: 200,
-  borderRadius: 200/2,
+  width:170,
+  height: 170,
+  borderRadius: 170/2,
   borderWidth:1,
   borderColor: 'plum',
 },
@@ -242,34 +226,6 @@ btnSnd: {
   },
 });
 
-interface Action {
-  title: string;
-  type: 'capture' | 'library';
-  options: ImagePicker.CameraOptions | ImagePicker.ImageLibraryOptions;
-}
-const actions: Action[] = [
-  {
-  title: 'Take Image',
-  type: 'capture',
-  options: {
-    saveToPhotos: true,
-    mediaType: 'photo',
-    includeBase64: false,
-    includeExtra,
-    },
-  },
-  {
-  title: 'Select Image',
-  type: 'library',
-  options: {
-    maxHeight: 200,
-    maxWidth: 200,
-    selectionLimit: 0,
-    mediaType: 'photo',
-    includeBase64: false,
-    includeExtra,
-  },
-},
-];
+
    
 export default D_Profile; 

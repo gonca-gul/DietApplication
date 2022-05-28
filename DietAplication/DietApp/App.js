@@ -50,6 +50,8 @@ import AnswerDetail from './src/pages/AnswerDetail';
 import D_Settings from './src/pages/D_Settings';
 import D_ChangePass from './src/pages/D_ChangePass';
 import U_ChangePass from './src/pages/U_ChangePass';
+import D_ForgotPass from './src/pages/D_ForgotPass';
+import U_ForgotPass from './src/pages/U_ForgotPass';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
@@ -242,6 +244,30 @@ const TabUser = createBottomTabNavigator();
         }} />
          <Stack.Screen name="U_ChangePass" component={U_ChangePass} 
          options={{ title: 'Change Password',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'white',
+          fontSize:22,
+        },
+        headerTintColor: "linen",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+          <Stack.Screen name="D_ForgotPass" component={D_ForgotPass} 
+         options={{ title: 'Forgot Password',
+         headerTitleAlign: "center",
+         headerTitleStyle: {
+          color: 'white',
+          fontSize:22,
+        },
+        headerTintColor: "linen",
+        headerStyle: {
+          backgroundColor: 'limegreen',
+        },
+        }} />
+         <Stack.Screen name="U_ForgotPass" component={U_ForgotPass} 
+         options={{ title: 'Forgot Password',
          headerTitleAlign: "center",
          headerTitleStyle: {
           color: 'white',
