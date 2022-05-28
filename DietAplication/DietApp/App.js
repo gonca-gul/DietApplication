@@ -58,7 +58,22 @@ import axios from 'axios';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
-  
+  React.useEffect(() => {
+    DietitianNotifications();
+   });
+  const [notf, setNotf] = React.useState( );
+  const DietitianNotifications = async () => {
+    const data = await AsyncStorage.getItem('token');
+    await axios
+    .get('http://10.0.2.2:5000/api/notifications/dietitianNotification',{
+      headers: {Authorization : 'Bearer '  +  data,
+      },
+    })
+    .then(function (response) {
+      setNotf(response.data);
+      //console.log(notif);
+    })
+  };
    return(
     <NotificationProvider>
   <Tab.Navigator screenOptions={({ route }) => ({
@@ -85,7 +100,7 @@ const TabNavigator = () => {
     <Tab.Screen name="PROFİLE"  options={{          
       headerTitleAlign: "center",
     tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
-    <Tab.Screen name="NOTIFICATIONS"  options={{ 
+    <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: notf,
       headerTitleAlign: "center",
     tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={D_Notifications}/>
   </Tab.Navigator>
@@ -93,11 +108,25 @@ const TabNavigator = () => {
    );
  }
 
- const TabUser = createBottomTabNavigator();
-
+ 
+const TabUser = createBottomTabNavigator();
  const TabUserNavigator = () => {
-    //const [notif, setNotif] = React.useState( );
-
+  React.useEffect(() => {
+    Notifications();
+   });
+  const [notif, setNotif] = React.useState( );
+  const Notifications = async () => {
+    const data = await AsyncStorage.getItem('token');
+    await axios
+    .get('http://10.0.2.2:5000/api/notifications/userNotification',{
+      headers: {Authorization : 'Bearer '  +  data,
+      },
+    })
+    .then(function (response) {
+      setNotif(response.data);
+      console.log(notif);
+    })
+  };
   return(
  <Tab.Navigator screenOptions={({ route }) => ({
      tabBarActiveTintColor: "black",
@@ -117,32 +146,16 @@ const TabNavigator = () => {
    tabBarIcon: () => (<AntIcon name='home' size={24} color='purple' />) }} component={U_HomePage}/>
    <Tab.Screen name="PROFİLE"  options={{ headerTitleAlign: "center",
    tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={U_Profile}/>
-   <Tab.Screen name="NOTIFICATIONS"  options={{  /*tabBarBadge: notif,*/
+   <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: notif,
    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
    </Tab.Navigator>
   );
 }
+ 
 
  const Stack = createNativeStackNavigator();
  function App() {
-   /*
-      const [notif, setNotif] = React.useState( );
-
-    React.useEffect(() => {
-        Notification();
-       });
-      const Notification = async () => {
-        const data = await AsyncStorage.getItem('token');
-        await axios
-        .get('http://10.0.2.2:5000/api/notifications/userNotification',{
-          headers: {Authorization : 'Bearer '  +  data,
-          },
-        })
-        .then(function (response) {
-          setNotif(response.data);
-          console.log(notif);
-        })
-      };*/
+ 
    return (
     <NotificationProvider>
      <NavigationContainer>
