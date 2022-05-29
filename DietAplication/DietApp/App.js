@@ -55,7 +55,13 @@ import U_ForgotPass from './src/pages/U_ForgotPass';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-
+const NotifNumber = (notifnumber) => {
+  if (notifnumber==0) {
+    return null;
+  
+   }else{
+     return notifnumber;
+   }}
 
 
 const Tab = createBottomTabNavigator();
@@ -102,7 +108,7 @@ const TabNavigator = () => {
     <Tab.Screen name="PROFİLE"  options={{          
       headerTitleAlign: "center",
     tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={D_Profile}/>
-    <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: notf,
+    <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: NotifNumber(notf),
       headerTitleAlign: "center",
     tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={D_Notifications}/>
   </Tab.Navigator>
@@ -148,7 +154,7 @@ const TabUser = createBottomTabNavigator();
    tabBarIcon: () => (<AntIcon name='home' size={24} color='purple' />) }} component={U_HomePage}/>
    <Tab.Screen name="PROFİLE"  options={{ headerTitleAlign: "center",
    tabBarIcon: () => (<AntIcon name='user' size={24} color='purple' />) }} component={U_Profile}/>
-   <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: notif,
+   <Tab.Screen name="NOTIFICATIONS"  options={{  tabBarBadge: NotifNumber(notif),
    tabBarIcon: () => (<Ionicons name='notifications-outline' size={24} color='purple' />) }}  component={Notification}/>
    </Tab.Navigator>
   );

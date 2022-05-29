@@ -12,7 +12,7 @@ function D_Notification(navigation){
 
     React.useEffect(() => {
         getNotifications();
-       });
+       },[]);
 
     const getNotifications = async () => {
       const data = await AsyncStorage.getItem('token');
@@ -40,7 +40,7 @@ function D_Notification(navigation){
                 renderItem={({item}) => {
                 return (
                 <View style={styles.listItem}>
-                    <Text style={styles.txt}>{item.message}</Text>
+                    <Text style={item.readfromDietitian===true ? styles.txt:styles.txt2}>{item.message}</Text>
                 </View>
               );
             }}/>
@@ -66,6 +66,14 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'500',
     color:'black',
+  },
+  txt2:{
+    marginLeft:5,
+    marginTop:20,
+    marginBottom:20,
+    fontSize:20,
+    fontWeight:'500',
+    color:'purple',
   },
     
     });

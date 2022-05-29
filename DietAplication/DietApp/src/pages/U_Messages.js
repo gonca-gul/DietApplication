@@ -73,7 +73,7 @@ function U_Messages({navigation}) {
                 return (
                 <View style={styles.listItem}>
                   <TouchableOpacity onPress={()=>{navigation.navigate('AnswerDetail',{answerdetail:item._id})}}>
-                    <Text style={styles.sbjt}>Subject: {item.subject}</Text>
+                    <Text style={item.readAnswer===true ? styles.sbjt:styles.sbjt2}>Subject: {item.subject}</Text>
                     <Text style={styles.txt}>{item.question}</Text>
                   </TouchableOpacity>
                 </View>
@@ -145,6 +145,13 @@ sbjt:{
   fontSize:17,
   marginTop:10,
   fontWeight:"500"
+},
+sbjt2:{
+  marginLeft:5,
+  fontSize:17,
+  marginTop:10,
+  fontWeight:"500",
+  color:'purple'
 },
 });
 export default U_Messages; 

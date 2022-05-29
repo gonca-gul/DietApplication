@@ -12,7 +12,7 @@ function Notification(){
 
     React.useEffect(() => {
         getNotifications();
-       });
+       },[]);
     const getNotifications = async () => {
       const data = await AsyncStorage.getItem('token');
       await axios
@@ -40,7 +40,7 @@ function Notification(){
                 <View style={styles.listItem}>
                     <ScrollView>
                         <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.txt}>{item.message}</Text>
+                        <Text style={item.readfromUser===true ? styles.txt:styles.txt2}>{item.message}</Text>
                         </TouchableOpacity>
                     </ScrollView>
                 </View>
@@ -68,6 +68,14 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'500',
     color:'black',
+  },
+  txt2:{
+    marginLeft:5,
+    marginTop:20,
+    marginBottom:20,
+    fontSize:20,
+    fontWeight:'500',
+    color:'purple',
   },
     });
 
