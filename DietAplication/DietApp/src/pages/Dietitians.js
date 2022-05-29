@@ -107,6 +107,7 @@ function Dietitians({navigation}) {
                     <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('GetProfile',{items:item.username})}>
                         <Image style={styles.image}  source={images(item.gender)}></Image>
                         <Text style={styles.txt}>{item.name} {item.surname}</Text>
+                        <Text style={styles.txt1}>{item.username}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btnReq} onPress={() => reqDiet(item)}>
                 <FontAwesome5 name="plus" size={28} color="darkgray" style={styles.icon}  />  
@@ -154,6 +155,12 @@ txt:{
   bottom:40,
   left:100,
   fontSize:20,
+  color:'darkslategrey',
+},
+txt1:{
+  bottom:40,
+  left:100,
+  fontSize:16,
   color:'darkslategrey',
 },
 txtbtn:{
