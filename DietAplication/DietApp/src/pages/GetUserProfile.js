@@ -30,7 +30,7 @@ function GetUserProfile({navigation,route}){
    }, []);
 
    const [gender, setGender] = React.useState();
-   const [birthday, setBirthday] = React.useState()
+   const [age, setAge] = React.useState()
    const [open, setOpen] = React.useState(false)
    const [weight, setWeight] = React.useState( );
    const [illness, setIllness] = React.useState('');
@@ -47,7 +47,7 @@ function GetUserProfile({navigation,route}){
             setHeight(JSON.stringify(response.data.height));
             setMedicine(response.data.medicine);
             setGender(response.data.gender);
-            setBirthday(response.data.birthday);
+            setAge(response.data.age);
             setIllness(response.data.illness);
             //console.log(response.data);
           })
@@ -90,8 +90,8 @@ function GetUserProfile({navigation,route}){
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <Text style={styles.txt}>  Gender</Text>
                 <Text style={styles.nameInput}> {gender}</Text>
-                <Text style={styles.txt}> Birthday</Text>
-                <Text style={styles.nameInput}>{birthday}</Text>
+                <Text style={styles.txt}> Age</Text>
+                <Text style={styles.nameInput}>{age}</Text>
             </View>
               </View>
               <Text style={styles.txtAbouttitle}> About  {username} </Text>

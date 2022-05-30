@@ -18,7 +18,7 @@ function GetProfile({navigation,route}){
    }, []);
 
   const [gender, setGender] = React.useState();
-  const [birthday, setBirthday] = React.useState()
+  const [age, setAge] = React.useState()
   const [open, setOpen] = React.useState(false)
   const [response, setResponse] = React.useState(null);
   const [username, setUsername] = React.useState('');
@@ -34,7 +34,7 @@ function GetProfile({navigation,route}){
         setName(response.data.name);
         setSurname(response.data.surname);
         setGender(response.data.gender);
-        setBirthday(response.data.birthday);
+        setAge(response.data.age);
         setBio(response.data.bio)
         //console.log(response.data);
       })
@@ -77,8 +77,8 @@ function GetProfile({navigation,route}){
         <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
             <Text style={styles.txt}>Gender</Text>
             <Text style={styles.nameInput}>  {gender}</Text>
-            <Text style={styles.txt} > Birthday </Text>
-            <Text style={styles.nameInput}>{birthday} </Text>
+            <Text style={styles.txt} > Age </Text>
+            <Text style={styles.nameInput}>{age} </Text>
         </View>
           </View>
             <Text style={styles.txtAbouttitle}> About {name} </Text>

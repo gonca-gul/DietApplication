@@ -28,7 +28,7 @@ const screenWidth = Dimensions.get("window").width;
 function U_Profile({navigation}) {
   const [gender, setGender] = React.useState();
   const [months, setMonths] = React.useState(new Array());
-  const [birthday, setBirthday] = React.useState(new Date())
+  const [age, setAge] = React.useState()
   const [open, setOpen] = React.useState(false)
   const [weight, setWeight] = React.useState( );
   const [weights, setWeights] = React.useState(new Array(0,0));
@@ -63,7 +63,7 @@ function U_Profile({navigation}) {
           setHeight(JSON.stringify(response.data.height));
           setMedicine(response.data.medicine);
           setGender(response.data.gender);
-          setBirthday(response.data.birthday);
+          setAge(response.data.age);
           setIllness(response.data.illness);
           //console.log(response);
         })
@@ -120,7 +120,7 @@ const data = {
           gender: gender,
           name: name,
           surname: surname,
-          birthday: birthday ,
+          age: age ,
           weight: weight,
           height: height,
           medicine: medicine,
@@ -185,9 +185,8 @@ const data = {
             <Text style={styles.topTxt1}>Length</Text>
             <MaterialIcon name="date-range" size={28} color="orange"  style={styles.rightIcons}/>
             <TextInput style={styles.TxtRight} 
-              dateFormat="YYYY-MM-DD"
-              value={birthday}
-              onChangeText={birthday => setBirthday(birthday)}></TextInput>
+              value={age}
+              onChangeText={age => setAge(age)}></TextInput>
             <Text style={styles.topTxt1}>Birthday</Text>
             <TextInput  style={{bottom:375, marginLeft:170, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} 
               value={surname}

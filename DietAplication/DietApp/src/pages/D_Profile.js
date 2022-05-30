@@ -14,7 +14,7 @@ function D_Profile(){
   const [gender, setGender] = React.useState();
   const [name, setName] = React.useState();
   const [surname, setSurname] = React.useState();
-  const [birthday, setBirthday] = React.useState(new Date())
+  const [age, setAge] = React.useState()
   const [open, setOpen] = React.useState(false)
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
@@ -39,7 +39,7 @@ function D_Profile(){
                 setSurname(response.data.surname);
                 setEmail(response.data.email);
                 setGender(response.data.gender);
-                setBirthday(response.data.birthday);
+                setAge(response.data.age);
                 setBio(response.data.bio)
                 console.log(response.data);
                 //console.log(name);
@@ -58,7 +58,7 @@ function D_Profile(){
             surname: surname,
             name: name,
             gender: gender,
-            birthday: birthday,
+            age: age,
             bio: bio,
             },{
             headers: {Authorization : 'Bearer '  +  data,
@@ -117,11 +117,10 @@ function D_Profile(){
             <Picker.Item label="Female" value="female"  />
             <Picker.Item label="Male" value="male" />
             </Picker>
-            <Text style={styles.txt} > Date of Birth </Text>
+            <Text style={styles.txt} > Age </Text>
             <TextInput style={styles.nameInput} 
-              dateFormat="YYYY-MM-DD"
-              value={birthday.toString()}
-              onChangeText={date => setBirthday(birthday)}></TextInput>
+              value={age}
+              onChangeText={age => setAge(age)}></TextInput>
             <Text style={styles.txt}> Biography </Text>
             <TextInput style={styles.nameInput}
                 value={bio} 
