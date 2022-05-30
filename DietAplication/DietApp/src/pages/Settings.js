@@ -35,10 +35,6 @@ function Settings({navigation}) {
           <FontAwesome  name="lock" color="green"  size={33} />
             <Text style={styles.btnTxt}>Change Password</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('ChangePassword')}>
-          <Ionicons  name="notifications-circle" color="mediumvioletred"  size={34} />
-            <Text style={styles.btnTxt}>Notification</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.btn}  onPress={()=>navigation.navigate('About')}>
           <AntIcon  name="questioncircle" color="darkorange"  size={30} />
             <Text style={styles.btnTxt}>About</Text>

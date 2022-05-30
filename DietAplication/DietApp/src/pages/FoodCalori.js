@@ -78,7 +78,7 @@ function FoodCalori({navigation}) {
             renderItem={({item}) => {
             return (
             <View style={styles.listItem}>
-                <Image style={styles.image}  source={require}></Image>
+                <Image style={styles.image}  source={require('../../src/image/foodicon.jpg')}></Image>
                 <Text style={styles.txt}>{item.name}</Text>
                 <Text style={styles.quantity}>({item.quantity})</Text>
                 <Text style={styles.Cal}>{item.calorie} kcal</Text>
