@@ -4,16 +4,20 @@ import type {Node} from 'react';
 import axios from 'axios';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity,FlatList,ScrollView  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNotification } from 'react-native-internal-notification';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 
 function U_Messages({navigation}) {
 
+  const notification = useNotification();
   const [subject, setSubject] = React.useState();
   const [question, setQuestion] = React.useState();
   const [answer, setAnswer] = React.useState();
   const [to, setTo] = React.useState();
   const [createdAt, setCreatedAd] = React.useState();
+  const [resmessage, setResmessage] = React.useState();
   const [data1, setData] = React.useState([]);
     React.useEffect(() => {
         getAnswers();
@@ -47,7 +51,12 @@ function U_Messages({navigation}) {
       },
     })
     .then(function (response) {
-    })
+      setResmessage(response.data.message);
+    });
+    notification.showNotification({
+      title: resmessage,
+      icon: <AntDesign name="message1" size={45} color='purple' />,
+  });
   };
 
   return(

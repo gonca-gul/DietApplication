@@ -4,15 +4,17 @@ import type {Node} from 'react';
 import axios from 'axios';
 import {Button, View, Text,StyleSheet,TextInput,TouchableOpacity, ScrollView,FlatList  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useNotification } from 'react-native-internal-notification';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 function Question({navigation,route}) {
     route = useRoute();
     const questions = route.params.questions; 
-
+    const notification = useNotification();
   const [subject, setSubject] = React.useState();
   const [answer, setAnswer] = React.useState();
+  const [resmessage, setResmessage] = React.useState();
   const [sender, setSender] = React.useState();
   const [createdAt, setCreatedAd] = React.useState();
   const [question, setQuestion] = React.useState();
@@ -50,7 +52,12 @@ function Question({navigation,route}) {
       },
     })
     .then(function (response) {
+      setResmessage(response.data.message);
     })
+    notification.showNotification({
+      title: resmessage,
+      icon: <AntDesign name="message1" size={45} color='purple' />,
+  });
   };
   const readQuestion = async () => {
     const data = await AsyncStorage.getItem('token');
@@ -61,6 +68,7 @@ function Question({navigation,route}) {
     })
     .then(function (response) {
     })
+   
   };
   return(
     <ScrollView>

@@ -36,6 +36,8 @@ function GetUserProfile({navigation,route}){
    const [illness, setIllness] = React.useState('');
    const [height, setHeight] = React.useState( );
    const [username, setUsername] = React.useState('');
+   const [name, setName] = React.useState('');
+   const [surname, setSurname] = React.useState('');
    const [medicine, setMedicine] = React.useState('');
 
     const getInfoUser= () => { 
@@ -43,6 +45,8 @@ function GetUserProfile({navigation,route}){
           .get('http://10.0.2.2:5000/api/users/getUser/'+item,)
           .then(function (response) {
             setUsername(response.data.username);
+            setName(response.data.name);
+            setSurname(response.data.surname);
             setWeight(JSON.stringify(response.data.weight));
             setHeight(JSON.stringify(response.data.height));
             setMedicine(response.data.medicine);
@@ -85,13 +89,13 @@ function GetUserProfile({navigation,route}){
                   height: 150,
                   alignSelf:"center",}}
                 source={images(gender)}/>
-                <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{username}</Text>
+                <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{name} {surname}</Text>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <Text style={styles.txt}>  Gender</Text>
-                <Text style={styles.nameInput}> {gender}</Text>
-                <Text style={styles.txt}> Age</Text>
-                <Text style={styles.nameInput}>{age}</Text>
+                <Text style={styles.txt}>     Gender</Text>
+                <Text style={styles.nameInput}>{gender}</Text>
+                <Text style={styles.txt}>Age</Text>
+                <Text style={styles.nameInput}>      {age}</Text>
             </View>
               </View>
               <Text style={styles.txtAbouttitle}> About  {username} </Text>

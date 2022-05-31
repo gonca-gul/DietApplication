@@ -39,6 +39,7 @@ function Dietitians({navigation}) {
         },
       })
       .then(async response => {
+        alert ( 'Your diet Request Has Been Forwarded to the Dietitian.!' )
       })
         .catch(function (error) { 
         alert(error);

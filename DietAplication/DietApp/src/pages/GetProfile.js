@@ -75,10 +75,10 @@ function GetProfile({navigation,route}){
             <Text style={{textAlign:"center",fontFamily:"sans-serif-condensed", fontSize:23,fontWeight:"700"}}>{name}  {surname}</Text>
         </View>
         <View style={{flexDirection:'row',justifyContent:"flex-start"}}>
-            <Text style={styles.txt}>Gender</Text>
+            <Text style={styles.txt}> Gender</Text>
             <Text style={styles.nameInput}>  {gender}</Text>
-            <Text style={styles.txt} > Age </Text>
-            <Text style={styles.nameInput}>{age} </Text>
+            <Text style={styles.txt} >   Age </Text>
+            <Text style={styles.nameInput}>       {age} </Text>
         </View>
           </View>
             <Text style={styles.txtAbouttitle}> About {name} </Text>

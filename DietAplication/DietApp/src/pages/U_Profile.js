@@ -58,7 +58,7 @@ function U_Profile({navigation}) {
         .then(function (response) {
           setUsername(response.data.username);
           setName(response.data.name);
-          setSurname(response.data.name);
+          setSurname(response.data.surname);
           setWeight(JSON.stringify(response.data.weight));
           setHeight(JSON.stringify(response.data.height));
           setMedicine(response.data.medicine);
@@ -170,7 +170,7 @@ const data = {
                 source={avatar}/>
             </View>
         <View style={styles.topView}>
-        <TextInput  style={{top:10, marginLeft:120, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} placeholder="Full Name "
+        <TextInput  style={{top:10, marginLeft:110, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} placeholder="Full Name "
               value={name}
               onChangeText={name => setName(name)} />
             <Icon name="weight" size={24} color="orange"  style={styles.rightIcons} />
@@ -187,7 +187,7 @@ const data = {
             <TextInput style={styles.TxtRight} 
               value={age}
               onChangeText={age => setAge(age)}></TextInput>
-            <Text style={styles.topTxt1}>Birthday</Text>
+            <Text style={styles.topTxt1}>Age</Text>
             <TextInput  style={{bottom:375, marginLeft:170, fontSize:20, fontWeight:"bold",color: 'black',marginTop:10}} 
               value={surname}
               onChangeText={surname => setSurname(surname)} />
