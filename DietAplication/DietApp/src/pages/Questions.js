@@ -11,7 +11,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 function Question({navigation,route}) {
     route = useRoute();
     const questions = route.params.questions; 
-    const notification = useNotification();
   const [subject, setSubject] = React.useState();
   const [answer, setAnswer] = React.useState();
   const [resmessage, setResmessage] = React.useState();
@@ -52,12 +51,8 @@ function Question({navigation,route}) {
       },
     })
     .then(function (response) {
-      setResmessage(response.data.message);
+      alert ( 'Your Message Has Been Sent Successfully!' )
     })
-    notification.showNotification({
-      title: resmessage,
-      icon: <AntDesign name="message1" size={45} color='purple' />,
-  });
   };
   const readQuestion = async () => {
     const data = await AsyncStorage.getItem('token');

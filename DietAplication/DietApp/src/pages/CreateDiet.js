@@ -44,6 +44,7 @@ function CreateDiet({navigation,route}) {
           headers: {Authorization : 'Bearer '  +  data,
           },
         })
+        alert ( 'Diet Has Been Sent Successfully!' )
       };
     const getDiet = async () => {
     const data = await AsyncStorage.getItem('token');
@@ -217,6 +218,7 @@ btnSnd: {
     backgroundColor:'mediumvioletred',
     justifyContent: 'center',
     alignSelf:'center',
+    marginBottom:20,
   },
   btnTxt: {
     color: 'white',
